@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Home</title>
+  <link rel="stylesheet" href="../../index.css" />
+  <link rel="stylesheet" href="home.css" />
+</head>
+<body>
+  <header class="site-header skin-home" data-common-nav>
+      <div class="nav-wrap">
+      <!-- Name on left like reference (not a tab) -->
+      <a class="site-name" href="../home/home.html" id="nav-name-left">Tanvir Sahed</a>
+
+      <!-- Tabs on right -->
+      <nav class="nav" id="nav-items"></nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero-card" id="hero">
+      <div class="hero-photo">
+        <img id="hero-photo" alt="Profile photo" />
+      </div>
+
+      <div class="hero-info">
+        <h1 class="hero-name" id="hero-name"></h1>
+        <div class="hero-status" id="hero-status"></div>
+        <div class="hero-role" id="hero-role"></div>
+        <div class="hero-uni" id="hero-uni"></div>
+
+        <div class="hero-line hero-mail">
+          <span class="icon">✉</span>
+          <a id="hero-email" class="link" href="#"></a>
+        </div>
+
+        <div class="hero-line" id="hero-dept-line">
+          <span class="icon">📍</span>
+          <span id="hero-dept"></span>
+        </div>
+
+        <div class="hero-icons" id="hero-icons"></div>
+      </div>
+
+      <div class="hero-actions">
+        <a class="btn btn-ghost" id="about-resume" href="assets/resume.pdf" target="_blank" rel="noreferrer">Resume</a>
+        <a class="btn" id="about-contact" href="#contact-footer">Contact Me</a>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section about-section">
+      <div class="section-head row-between">
+        <div>
+          <h2 class="section-title" id="about-title"></h2>
+          <div class="section-underline"></div>
+        </div>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-text" id="about-summary"></div>
+        <div class="about-keywords" id="about-keywords"></div>
+      </div>
+
+      <div class="about-divider" aria-hidden="true"></div>
+      <div class="about-badges" id="about-badges"></div>
+    </section>
+
+    <!-- FEATURED PROJECTS CAROUSEL (3 visible, move 1 per click) -->
+    <section class="section">
+      <div class="section-head row-between">
+        <div>
+          <h2 class="section-title" id="fp-title"></h2>
+          <div class="muted" id="fp-subtitle"></div>
+          <div class="section-underline"></div>
+        </div>
+
+        <a class="btn btn-ghost" id="fp-viewall" href="#">View all</a>
+      </div>
+
+      <div class="carousel">
+        <button class="car-btn" id="car-prev" aria-label="Previous">‹</button>
+
+        <div class="car-viewport" id="car-viewport">
+          <div class="car-track" id="car-track"></div>
+        </div>
+
+        <button class="car-btn" id="car-next" aria-label="Next">›</button>
+      </div>
+
+      <div class="car-dots" id="car-dots"></div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section class="section">
+      <div class="section-head">
+        <h2 class="section-title" id="edu-title"></h2>
+        <div class="muted" id="edu-subtitle"></div>
+        <div class="section-underline"></div>
+      </div>
+
+      <div class="edu-list" id="edu-list"></div>
+    </section>
+
+    <!-- AWARDS WALL -->
+    <section class="section">
+      <div class="section-head">
+        <h2 class="section-title" id="aw-title"></h2>
+        <div class="muted" id="aw-subtitle"></div>
+        <div class="section-underline"></div>
+      </div>
+
+      <div class="award-carousel">
+        <button class="award-btn" id="aw-prev" aria-label="Previous">‹</button>
+        <div class="award-viewport">
+          <div class="award-track" id="award-track"></div>
+        </div>
+        <button class="award-btn" id="aw-next" aria-label="Next">›</button>
+      </div>
+    </section>
+
+    <!-- GITHUB ACTIVITY -->
+    <section class="section" id="gh-section" style="display:none;">
+      <div class="section-head">
+        <h2 class="section-title" id="gh-title"></h2>
+        <div class="section-underline"></div>
+      </div>
+
+      <div class="github-box">
+        <div class="muted" id="gh-loading">Loading GitHub activity…</div>
+        <div class="gh-list" id="gh-list"></div>
+      </div>
+    </section>
+
+    <!-- CODING (placeholder for later) -->
+    <section class="section" id="coding-section" style="display:none;">
+      <div class="section-head">
+        <h2 class="section-title" id="coding-title"></h2>
+        <div class="section-underline"></div>
+      </div>
+      <p class="muted" id="coding-note"></p>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contact-footer">
+    <div class="container footer-body">
+      <div class="foot-top">
+        <div class="foot-col">
+          <h3 class="foot-head">Office Address</h3>
+          <div class="foot-lines" id="foot-address"></div>
+        </div>
+        <div class="foot-col">
+          <h3 class="foot-head">Contact</h3>
+          <div class="foot-lines" id="foot-contact"></div>
+        </div>
+        <div class="foot-col">
+          <h3 class="foot-head">Office Hours</h3>
+          <div class="foot-lines" id="foot-hours"></div>
+        </div>
+      </div>
+
+      <div class="foot-mid">
+        <form class="foot-form" id="foot-form">
+          <label>
+            <span>Name</span>
+            <input type="text" id="foot-name" name="name" autocomplete="name" />
+          </label>
+          <label>
+            <span>Email *</span>
+            <input type="email" id="foot-email" name="email" autocomplete="email" required />
+          </label>
+          <label>
+            <span>Message</span>
+            <textarea id="foot-message" name="message" rows="4"></textarea>
+          </label>
+          <button type="submit" id="foot-send">Send</button>
+        </form>
+        <div class="foot-map" id="foot-map"></div>
+      </div>
+
+      <div class="foot-bottom">
+        <div>
+          <h3 id="foot-title"></h3>
+          <p id="foot-desc"></p>
+        </div>
+        <span id="last-updated"></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../index.js" defer data-nav-json="../../index.json"></script>
+  <script src="home.js" defer></script>
+</body>
+</html>

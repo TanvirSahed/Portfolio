@@ -1,0 +1,18 @@
+{
+  "nav": {
+    "nameLeft": "Tanvir Sahed",
+    "nameLeftStyle": {
+      "variant": "logo",
+      "font": "system-ui, Tahoma, Geneva, Verdana, sans-serif",
+      "weight": "-10",
+      "letterSpacing": "0.1px",
+      "transform": ""
+    },
+    "items": [
+      { "label": "Projects", "href": "../projects/projects.html" },
+      { "label": "Publication", "href": "../publication/publication.html" },
+      { "label": "Experience", "href": "../experience/experience.html" },
+      { "label": "Gallery", "href": "../gallery/gallery.html" }
+    ]
+  }
+}

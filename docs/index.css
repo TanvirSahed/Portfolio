@@ -1,0 +1,287 @@
+:root {
+  --nav-bg: rgba(255, 255, 255, 0.88);
+  --nav-text: #1d273d;
+  --nav-muted: #475569;
+  --nav-accent: #2563eb;
+  --nav-line: #377dbe;
+  --nav-font: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  --nav-container: 1060px;
+  --nav-height: 60px;
+
+  /* Optional: set via index.json -> nav.nameLeftStyle */
+  --nav-name-font: var(--nav-font);
+  --nav-name-size: 22px;
+  --nav-name-weight: 20;
+  --nav-name-letter-spacing: normal;
+  --nav-name-transform: none;
+  --nav-name-color: var(--nav-text);
+
+  /* Neon accent (matches your blue theme) */
+  --neon: 39, 56, 156; /* rgb for #2563eb 37, 99, 235 */
+  --neonx: 255, 255, 255; /* rgb for #2563eb */
+}
+
+* { box-sizing: border-box; }
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--nav-bg);
+  backdrop-filter: blur(1px);
+  font-family: var(--nav-font);
+  border-bottom: 1px solid #d1d4de;
+  /* Needed for neon layer */
+  overflow: hidden;
+}
+
+/* Keep nav content above the neon layer */
+.nav-wrap {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--nav-height);
+  padding: 0;
+  width: min(var(--nav-container), 92vw);
+  margin: 0 auto;
+}
+
+/* ===== Neon PCB glow layer (behind logo, fades before tabs) ===== */
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+
+  /* Draw “traces” + a few “nodes” using gradients */
+  background:
+    /* Fade helper (fallback if mask not supported) */
+    linear-gradient(
+      to right,
+      rgba(var(--neon), 0.14) 0%,
+      rgba(var(--neon), 0.10) 35%,
+      rgba(var(--neon), 0.05) 55%,  
+      rgba(var(--neon), 0.00) 72%
+    ),
+
+    /* bright nodes */
+    radial-gradient(circle at 90px 18px,  rgba(var(--neonx), 0.55) 0 2px, rgba(var(--neonx), 0.00) 7px),
+    radial-gradient(circle at 160px 32px, rgba(var(--neonx), 0.42) 0 2px, rgba(var(--neonx), 0.00) 7px),
+    radial-gradient(circle at 260px 22px, rgba(var(--neonx), 0.38) 0 2px, rgba(var(--neonx), 0.00) 7px),
+    radial-gradient(circle at 360px 34px, rgba(var(--neonx), 0.32) 0 2px, rgba(var(--neonx), 0.00) 7px),
+
+    /* long horizontal trace near the top */
+    linear-gradient(
+      to right,
+      rgba(var(--neonx), 0.00) 0%,
+      rgba(var(--neonx), 0.32) 8%,
+      rgba(var(--neonx), 0.22) 42%,
+      rgba(var(--neonx), 0.00) 70%
+    ),
+
+    /* secondary trace slightly lower */
+    linear-gradient(
+      to right,
+      rgba(var(--neonx), 0.00) 0%,
+      rgba(var(--neonx), 0.20) 10%,
+      rgba(var(--neonx), 0.14) 48%,
+      rgba(var(--neonx), 0.00) 70%
+    ),
+
+    /* a few vertical “vias” / drops */
+    linear-gradient(
+      to bottom,
+      rgba(var(--neonx), 0.00) 0%,
+      rgba(var(--neonx), 0.30) 35%,
+      rgba(var(--neonx), 0.00) 80%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(var(--neon), 0.00) 0%,
+      rgba(var(--neon), 0.22) 35%,
+      rgba(var(--neon), 0.00) 80%
+    );
+
+  background-repeat: no-repeat;
+
+  /* Positions of the trace layers (tuned for your header height) */
+  background-size:
+    100% 100%,  /* fade helper */
+    100% 100%,  /* nodes */
+    100% 100%,
+    100% 100%,
+    100% 100%,
+
+    520px 2px,  /* top horizontal trace */
+    440px 2px,  /* second trace */
+    2px 44px,   /* via 1 */
+    2px 38px;   /* via 2 */
+
+  background-position:
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+    0 0,
+
+    10px 16px,   /* top trace starts at left */
+    60px 34px,   /* second trace */
+    210px 18px,  /* via 1 */
+    320px 22px;  /* via 2 */
+
+  /* Glow feel */
+  opacity: 0.85;
+  filter:
+    drop-shadow(0 0 6px rgba(var(--neon), 0.28))
+    drop-shadow(0 0 16px rgba(var(--neon), 0.18));
+
+  /* The important part: fade out before reaching the tabs */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,1) 52%,
+    rgba(0,0,0,0) 68%
+  );
+  mask-image: linear-gradient(
+    to right,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,1) 52%,
+    rgba(0,0,0,0) 68%
+  );
+}
+
+/* Optional: make the glow a bit smaller on tiny screens */
+@media (max-width: 760px) {
+  .site-header::before {
+    opacity: 0.75;
+    -webkit-mask-image: linear-gradient(
+      to right,
+      rgba(0,0,0,1) 0%,
+      rgba(0,0,0,1) 60%,
+      rgba(0,0,0,0) 82%
+    );
+    mask-image: linear-gradient(
+      to right,
+      rgba(0,0,0,1) 0%,
+      rgba(0,0,0,1) 60%,
+      rgba(0,0,0,0) 82%
+    );
+  }
+}
+
+/* .site-name {
+  font-family: var(--nav-name-font, var(--nav-font));
+  font-size: 20px;
+  text-transform: var(--nav-name-transform, none);
+  padding: 6px 10px;
+  border-radius: 12px;
+  color: #1e005a;
+  text-decoration: none;
+} */
+
+.site-name.is-logo {
+  font-size: 20px;
+  font-weight: 500;
+  color: #0000009e;
+  letter-spacing: 1.6px;
+  /* text-transform: uppercase; */
+text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.11),
+    0 0px 0 rgba(54, 156, 253, 0.9),
+    0 1px 0 rgba(2, 6, 23, 0.10),
+    0 10px 22px rgba(37, 99, 235, 0.18);
+}
+
+.site-name.is-logo:hover {
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.201),
+    0 2px 0 rgba(22, 23, 32, 0.074),
+    0 2px 0 rgba(0, 4, 255, 0.067),
+    0 8px 14px rgba(15, 83, 47, 0.471);
+}
+
+.nav {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.nav a {
+  color: var(--nav-muted);
+  padding: 6px 4px;
+  position: relative;
+  text-decoration: none;
+}
+
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  bottom: -7px;
+  height: 2px;
+  background: var(--nav-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.22s ease;
+}
+
+.nav a:hover::after { transform: scaleX(1); }
+
+@media (max-width: 760px) {
+  .nav { gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
+  .site-name { font-size: 18px; }
+}
+
+/* Shared page title styling (non-home pages) */
+.page-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  margin: 20px auto 20px;
+  padding-bottom: 16px;
+
+  /* Divider line under the title/subtitle.
+     Override per-page by setting these on `.page-head`:
+     --page-head-divider-thickness: 1px;
+     --page-head-divider-color: var(--nav-line);
+     --page-head-divider-length: 100%;
+     --page-head-divider-anchor: left|center|right;
+  */
+  background-image: linear-gradient(
+    var(--page-head-divider-color, var(--nav-line)),
+    var(--page-head-divider-color, var(--nav-line))
+  );
+  background-repeat: no-repeat;
+  background-size: var(--page-head-divider-length, 100%) var(--page-head-divider-thickness, 1px);
+  background-position: var(--page-head-divider-anchor, center) 100%;
+}
+
+.page-head h1,
+#page-title {
+  margin: 0;
+  font-family: var(--nav-font);
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  color: var(--nav-text);
+}
+
+.page-head p,
+#page-subtitle,
+.page-subtitle {
+  margin: 6px 0 0;
+  font-family: var(--nav-font);
+  font-size: 15px;
+  font-weight: 400;
+  color: #475569;
+  line-height: 1.6;
+}

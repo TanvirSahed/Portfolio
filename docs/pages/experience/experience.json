@@ -1,0 +1,621 @@
+{
+  "theme": {
+    "bg": "#fdfef894",
+    "text": "#000000",
+    "muted": "#44546a",
+    "accent": "#2f5bd1",
+    "line": "#50508186",
+    
+    "fontBody": "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+    "fontUi": "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+    "container": "1040px",
+    "sectionGap": "30px",
+    "imageRadius": "12px",
+    "imageBorder": "1px solid #d6e0ef"
+  },
+  "page": {
+    "title": {
+      "text": "Experience",
+      "color": "#0b1c3d",
+      "size": "30px",
+      "font": "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial",
+      "align": "center",
+      "weight": "700",
+      "letterSpacing": "0.2px"
+    },
+    "tabsFrame": {
+      "enabled": true,
+      "background": "#f3f9fe",
+      "border": "1px solid #50508186",
+      "shadow": "0 12px 15px rgba(12, 31, 64, 0.08)",
+      "radius": "12px",
+      "padding": "12px",
+      "marginBottom": "24px"
+    },
+    "groupUnderline": {
+      "enabled": true,
+      "color": "#2f5bd1",
+      "thickness": "4px",
+      "length": "140px",
+      "radius": "999px",
+      "gap": "10px",
+      "anchor": "left"
+    },
+    "tabButtons": {
+      "width": "auto",
+      "height": "40px",
+      "radius": "12px",
+      "activeBackground": "#2f5bd1",
+      "activeTextColor": "#ffffff"
+    }
+  },
+  "groups": [
+    { "id": "research", "title": "Research Experience", "navLabel": "Research Exp" },
+    { "id": "industry", "title": "Industry Experience", "navLabel": "Industry Exp" },
+    { "id": "leadership", "title": "Leadership & Activities", "navLabel": "Leadership and\nActivities", "include": ["leadership", "volunteering"] }
+  ],
+  "sections": [
+    {
+      "id": "gra-mist",
+      "group": "research",
+      "enabled": true,
+      "layout": {
+        "imagePosition": "right",
+        "gap": "30px"
+      },
+      "title": {
+        "text": "Graduate Research Assistant at [SET Lab](https://solardt.github.io/web/) (Government-Funded Research Project)",
+        "color": "#0b1c3d",
+        "size": "17px",
+        "font": "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial",
+        "align": "left",
+        "weight": "700"
+      },
+      "subtitle": {
+        "enabled": true,
+        "items": [
+          { "label": "Organization", "type": "link", "value": "EECE, Military Institute of Science and Technology (MIST)", "href": "https://mist.ac.bd/department/eece" },
+          { "label": "Location", "type": "text", "value": "Dhaka, Bangladesh" },
+          { "label": "Period", "type": "text", "value": "Oct 2025 – Present" },
+          {
+            "label": "Responsibilities",
+            "type": "list",
+            "value": [
+              "Planned and supported the setup of the SET research lab.",
+              "Designing system architecture and data flow for embedded devices and monitoring components.",
+              "Developing ML/DL/RL model structures for the Digital Twin workstream.",
+              "Maintaining project website and technical documentation.",
+              "Preparing technical tender and public procurement documents.",
+              "Coordinating with industry partners and vendors."
+            ]
+          }
+        ],
+        "labelStyle": {
+          "color": "#0b1c3d",
+          "size": "16px",
+          "font": "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial",
+          "weight": "700"
+        },
+        "valueStyle": {
+          "color": "#44546a",
+          "size": "16px",
+          "lineHeight": "1.65"
+        },
+        "align": "left"
+      },
+      "description": {
+        "enabled": true,
+        "type": "text",
+        "value": "In this role, I focus on practical system design and documentation for a government-funded research program covering lab setup, whole system architecture, and digital-twin model planning. The scope is research-driven, but the outputs are built to be implementable",
+        "color": "#334155",
+        "size": "16px",
+        "lineHeight": "1.6"
+      },
+      "image": {
+        "enabled": true,
+        "src": "assets/images/logos/mist.webp",
+        "alt": "",
+        "width": "360px",
+        "height": "160px",
+        "squareSize": "",
+        "fit": "cover",
+        "align": "center",
+        "caption": ""
+      },
+      "carousel": {
+        "enabled": true,
+        "width": "100%",
+        "height": "480px",
+        "showCaptions": false,
+        "images": ["assets/images/photos/ramist"]
+      },
+      "links": {
+        "enabled": false,
+        "placement": "belowDescription",
+        "items": []
+      }
+    },
+    {
+      "id": "vip lab",
+      "group": "research",
+      "enabled": true,
+      "layout": {
+        "imagePosition": "right",
+        "gap": "30px"
+      },
+      "title": {
+        "text": "Student Researcher at [Visual Image Processing](https://vip-eece.mist.ac.bd/) (VIP) Lab",
+        "color": "#0b1c3d",
+        "size": "17px",
+        "font": "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial",
+        "align": "left",
+        "weight": "700"
+      },
+      "subtitle": {
+        "enabled": true,
+        "items": [
+          { "label": "Organization", "type": "link", "value": "EECE, Military Institute of Science and Technology (MIST)", "href": "https://mist.ac.bd/department/eece" },
+          { "label": "Location", "type": "text", "value": "Dhaka, Bangladesh" },
+          { "label": "Period", "type": "text", "value": "Apr 2023 – April 2024" },
+          {
+            "label": "What I did",
+            "type": "list",
+            "value": [
+              "Collected and processed lip-reading video data from 150 Bengali speakers for machine learning research.",
+              "Created the first and largest Bengali lip-reading dataset for low-resource language studies",
+              "Validated the dataset using LipNet-based deep learning models and baseline experiments",
+              "Performed model training, evaluation, and result analysis as a student researcher",
+              "Participated in literature review, experiments, and research documentation"
+            ]
+          }
+        ],
+        "labelStyle": {
+          "color": "#0b1c3d",
+          "size": "16px",
+          "font": "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial",
+          "weight": "700"
+        },
+        "valueStyle": {
+          "color": "#44546a",
+          "size": "16px",
+          "lineHeight": "1.65"
+        },
+        "align": "left"
+      },
+      "description": {
+        "enabled": true,
+        "type": "text",
+        "value": "In this Lab I learned formal Research methodologies and practices. I worked on data collection, preprocessing, model training, and evaluation for a Bengali lip-reading dataset. This experience enhanced my skills in machine learning, data analysis, and research documentation.",
+        "color": "#334155",
+        "size": "16px",
+        "lineHeight": "1.6"
+      },
+      "image": {
+        "enabled": true,
+        "src": "assets/images/logos/mist.webp",
+        "alt": "",
+        "width": "360px",
+        "height": "160px",
+        "squareSize": "",
+        "fit": "cover",
+        "align": "center",
+        "caption": ""
+      },
+      "carousel": {
+        "enabled": true,
+        "width": "100%",
+        "height": "480px",
+        "showCaptions": false,
+        "images": ["assets/images/photos/vip"]
+      },
+      "links": {
+        "enabled": false,
+        "placement": "belowDescription",
+        "items": []
+      }
+    },
+
+    {
+      "id": "embedded-engineer-cfl",
+      "group": "industry",
+      "enabled": true,
+      "layout": {
+        "imagePosition": "right",
+        "gap": "30px"
+      },
+      "title": {
+        "text": "Embedded Systems Engineer",
+        "color": "#0b1c3d",
+        "size": "17px",
+        "font": "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial",
+        "align": "left",
+        "weight": "700"
+      },
+      "subtitle": {
+        "enabled": true,
+        "items": [
+          { "label": "Organization", "type": "link", "value": "Creative Factory Labs", "href": "https://www.creativefactorylabs.com/" },
+          { "label": "Location", "type": "text", "value": "Dhaka, Bangladesh" },
+          { "label": "Period", "type": "text", "value": "Jun 2025 – Oct 2025" },
+          {
+            "label": "What I did",
+            "type": "list",
+            "value": [
+              "Developed scalable, portable firmware for embedded control systems (including ECU ignition and hydropower valve control).",
+              "Wrote user-facing firmware documentation for handover and maintenance.",
+              "Contributed to product architecture and system design for custom devices (e.g., smart medicine box, hardware wallet concepts).",
+              "Designed and developed custom PCBs to support prototypes and products."
+            ]
+          }
+        ],
+        "labelStyle": {
+          "color": "#0b1c3d",
+          "size": "16px",
+          "font": "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial",
+          "weight": "700"
+        },
+        "valueStyle": {
+          "color": "#44546a",
+          "size": "16px",
+          "lineHeight": "1.65"
+        },
+        "align": "left"
+      },
+      "description": {
+        "enabled": true,
+        "type": "text",
+        "value": "This role strengthened my industry workflow: designing firmware that can be reused across variants, writing documentation that helps others maintain it, and collaborating across hardware and product design constraints.",
+        "color": "#334155",
+        "size": "16px",
+        "lineHeight": "1.6"
+      },
+      "image": {
+        "enabled": true,
+        "src": "assets/images/logos/cfl.webp",
+        "alt": "",
+        "width": "360px",
+        "height": "160px",
+        "squareSize": "",
+        "fit": "cover",
+        "align": "center",
+        "caption": ""
+      },
+      "carousel": {
+        "enabled": true,
+        "width": "100%",
+        "height": "480px",
+        "showCaptions": false,
+        "images": ["assets/images/photos/cfl"]
+      },
+      "links": {
+        "enabled": false,
+        "placement": "belowDescription",
+        "items": []
+      }
+    },
+
+    {
+      "id": "rnd-nrgroup",
+      "group": "industry",
+      "enabled": true,
+      "layout": {
+        "imagePosition": "right",
+        "gap": "30px"
+      },
+      "title": {
+        "text": "R&D Engineer (Embedded Systems & Robotics)",
+        "color": "#0b1c3d",
+        "size": "17px",
+        "font": "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial",
+        "align": "left",
+        "weight": "700"
+      },
+      "subtitle": {
+        "enabled": true,
+        "items": [
+          { "label": "Organization", "type": "link", "value": "Composite Yarn Dyeing, NR Group", "href": "https://nrgroup-bd.com/" },
+          { "label": "Location", "type": "text", "value": "Dhaka, Bangladesh" },
+          { "label": "Period", "type": "text", "value": "Oct 2024 – Jun 2025" },
+          {
+            "label": "What I did",
+            "type": "list",
+            "value": [
+              "Automated a water treatment plant using microcontroller-based systems and sensors.",
+              "Co-developed a CCTV-based fire detection and protection system.",
+              "Designed GUIs for HMI displays as a modern alternative to traditional panels.",
+              "Developed controller apps for machine interfaces.",
+              "Delivered a custom robotics solution to address foam accumulation in an effluent treatment plant reservoir."
+            ]
+          }
+        ],
+        "labelStyle": {
+          "color": "#0b1c3d",
+          "size": "16px",
+          "font": "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial",
+          "weight": "700"
+        },
+        "valueStyle": {
+          "color": "#44546a",
+          "size": "16px",
+          "lineHeight": "1.65"
+        },
+        "align": "left"
+      },
+      "description": {
+        "enabled": true,
+        "type": "text",
+        "value": "I worked on applied R&D projects where reliability and clear user interaction mattered—spanning sensing, embedded control, and practical UI/HMI design. The focus was always on solutions that operators could actually use and maintain.",
+        "color": "#334155",
+        "size": "16px",
+        "lineHeight": "1.6"
+      },
+      "image": {
+        "enabled": true,
+        "src": "assets/images/logos/nrg.webp",
+        "alt": "",
+        "width": "360px",
+        "height": "160px",
+        "squareSize": "",
+        "fit": "cover",
+        "align": "center",
+        "caption": ""
+      },
+      "carousel": {
+        "enabled": true,
+        "width": "100%",
+        "height": "480px",
+        "showCaptions": false,
+        "images": ["assets/images/photos/nr"]
+      },
+      "links": {
+        "enabled": false,
+        "placement": "belowDescription",
+        "items": []
+      }
+    },
+    {
+      "id": "intern-energypac",
+      "group": "industry",
+      "enabled": true,
+      "layout": {
+        "imagePosition": "right",
+        "gap": "30px"
+      },
+      "title": {
+        "text": "Internship",
+        "color": "#0b1c3d",
+        "size": "17px",
+        "font": "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial",
+        "align": "left",
+        "weight": "700"
+      },
+      "subtitle": {
+        "enabled": true,
+        "items": [
+          { "label": "Organization", "type": "link", "value": "Energypac Electronics Ltd.", "href": "https://www.energypacelectronics.com/" },
+          { "label": "Location", "type": "text", "value": "Dhaka, Bangladesh" },
+          { "label": "Period", "type": "text", "value": "Jan 2023 – Feb 2023" },
+          {
+            "label": "What I did",
+            "type": "list",
+            "value": [
+              "Learned about assemly line processes for product manufacturing and quality assurance.",
+              "Conducted testing and troubleshooting for power electronics products.",
+              "Learned about Robotic Process Automation (RPA) applications in manufacturing.",
+              "Observed CNC machine operations and maintenance procedures.",
+              "Got an overview of product design and development workflows."
+            ]
+          }
+        ],
+        "labelStyle": {
+          "color": "#0b1c3d",
+          "size": "16px",
+          "font": "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial",
+          "weight": "700"
+        },
+        "valueStyle": {
+          "color": "#44546a",
+          "size": "16px",
+          "lineHeight": "1.65"
+        },
+        "align": "left"
+      },
+      "description": {
+        "enabled": true,
+        "type": "text",
+        "value": "Here I learned about manufacturing processes, quality assurance, RPA and practical aspects of product assembly. This experience gave me insight into how design decisions impact production and reliability.",
+        "color": "#334155",
+        "size": "16px",
+        "lineHeight": "1.6"
+      },
+      "image": {
+        "enabled": true,
+        "src": "assets/images/logos/epel.webp",
+        "alt": "",
+        "width": "360px",
+        "height": "160px",
+        "squareSize": "",
+        "fit": "cover",
+        "align": "center",
+        "caption": ""
+      },
+      "carousel": {
+        "enabled": true,
+        "width": "100%",
+        "height": "480px",
+        "showCaptions": false,
+        "images": ["assets/images/photos/epel"]
+      },
+      "links": {
+        "enabled": false,
+        "placement": "belowDescription",
+        "items": []
+      }
+    },
+    {
+      "id": "intern-samsung",
+      "group": "industry",
+      "enabled": true,
+      "layout": {
+        "imagePosition": "right",
+        "gap": "30px"
+      },
+      "title": {
+        "text": "Internship",
+        "color": "#0b1c3d",
+        "size": "17px",
+        "font": "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial",
+        "align": "left",
+        "weight": "700"
+      },
+      "subtitle": {
+        "enabled": true,
+        "items": [
+          { "label": "Organization", "type": "link", "value": "Samsung | Fair Electronics", "href": "https://fairelectronics.com.bd/about-fair-electronics?srsltid=AfmBOopjUH_6YfkMYLDah7JYbP3mnfek_daqzeWBxQCkIuo9qkldRIvv" },
+          { "label": "Location", "type": "text", "value": "Dhaka, Bangladesh" },
+          { "label": "Period", "type": "text", "value": "Feb 2023 – Mar 2023" },
+          {
+            "label": "What I did",
+            "type": "list",
+            "value": [
+              "Learned about complex manufacturing made simple by step by step processes.",
+              "Conducted testing and troubleshooting for power electronics ICs.",
+              "Grasped the concept of assembled in Bangladesh for global brands.",
+              "Got a training on Static Based Handling and ESD safety measures."
+            ]
+          }
+        ],
+        "labelStyle": {
+          "color": "#0b1c3d",
+          "size": "16px",
+          "font": "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial",
+          "weight": "700"
+        },
+        "valueStyle": {
+          "color": "#44546a",
+          "size": "16px",
+          "lineHeight": "1.65"
+        },
+        "align": "left"
+      },
+      "description": {
+        "enabled": true,
+        "type": "text",
+        "value": "This internship provided me with insights into large-scale manufacturing processes, quality control, and ESD safety practices. It highlighted the importance of precision and consistency in producing electronics for global markets.",
+        "color": "#334155",
+        "size": "16px",
+        "lineHeight": "1.6"
+      },
+      "image": {
+        "enabled": true,
+        "src": "assets/images/logos/sf.webp",
+        "alt": "",
+        "width": "360px",
+        "height": "160px",
+        "squareSize": "",
+        "fit": "cover",
+        "align": "center",
+        "caption": ""
+      },
+      "carousel": {
+        "enabled": true,
+        "width": "100%",
+        "height": "480px",
+        "showCaptions": false,
+        "images": ["assets/images/photos/sf"]
+      },
+      "links": {
+        "enabled": false,
+        "placement": "belowDescription",
+        "items": []
+      }
+    },
+    {
+      "id": "president-mrc",
+      "group": "leadership",
+      "enabled": true,
+      "layout": {
+        "imagePosition": "right",
+        "gap": "30px"
+      },
+      "title": {
+        "text": "President, [MIST Robotics Club](https://www.facebook.com/MistRoboticsClub/)",
+        "color": "#0b1c3d",
+        "size": "17px",
+        "font": "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial",
+        "align": "left",
+        "weight": "700"
+      },
+      "subtitle": {
+        "enabled": true,
+        "items": [
+          { "label": "Organization", "type": "text", "value": "[MRC](https://mist.ac.bd/page/robotics-club), EECE, Military Institute of Science and Technology (MIST)" },
+          { "label": "Location", "type": "text", "value": "Dhaka, Bangladesh" },
+          { "label": "Period", "type": "text", "value": "Mar 2023 - Apr 2024" },
+          {
+            "label": "What I did",
+            "type": "list",
+            "value": [
+              "Organized and ran robotics events (line follower race, soccer bot, student orientations), including planning, rules, and logistics.",
+              "Designed and delivered hands-on technical classes on robotics and embedded systems; guided members through demos and small projects.",
+              "Led an 8-person executive team (VPs and student advisors), delegating responsibilities and tracking execution.",
+              "Coordinated collaborations with other student organizations to grow participation and build cross-club initiatives.",
+              "Mentored junior members on competition preparation, teamwork, and practical prototyping."
+            ]
+          }
+        ],
+        "labelStyle": {
+          "color": "#0b1c3d",
+          "size": "16px",
+          "font": "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial",
+          "weight": "700"
+        },
+        "valueStyle": {
+          "color": "#44546a",
+          "size": "16px",
+          "lineHeight": "1.65"
+        },
+        "align": "left"
+      },
+      "description": {
+        "enabled": true,
+        "type": "text",
+        "value": "This role strengthened my leadership and teaching skills: turning complex ideas into approachable lessons, aligning a team around shared goals, and building partnerships to run impactful events.",
+        "color": "#334155",
+        "size": "16px",
+        "lineHeight": "1.6"
+      },
+      "image": {
+        "enabled": true,
+        "src": "assets/images/logos/mrc.webp",
+        "alt": "",
+        "width": "360px",
+        "height": "160px",
+        "squareSize": "",
+        "fit": "cover",
+        "align": "center",
+        "caption": ""
+      },
+      "carousel": {
+        "enabled": true,
+        "width": "100%",
+        "height": "480px",
+        "showCaptions": false,
+        "images": ["assets/images/photos/mrc"]
+      },
+      "links": {
+        "enabled": false,
+        "placement": "belowDescription",
+        "items": []
+      }
+    }
+  ]
+}
+
+
+
+
+
+
+
+

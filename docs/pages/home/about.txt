@@ -1,0 +1,25 @@
+Hi, I’m Tanvir, and I make intelligent machines,
+
+where software, hardware, and learning intersect. 
+My work sits at the intersection of **embedded systems** and **AI**, where **real-time firmware**, 
+safety-critical control, and **industrial automation** require deterministic behavior under strict resource
+and timing constraints with learning layers. I design **interrupt-driven**, **state-machine** based firmware 
+on **memory-constrained systems**, targeting **MCU/MPU** such as STM32 (F4/F7), ARM Cortex-M, 
+AVR (ATmega/ATtiny), ESP32/ESP8266, and Raspberry Pi, with an emphasis on **portable**, **modular**, and 
+**RTOS-aware** design. My firmware architecture relies on well-defined **Hardware Abstraction Layers (HAL)**
+and supports **real-time communication protocols** for robust system integration.
+
+
+My development workflow spans **STM32Cube**, **PlatformIO**, and Arduino IDE, 
+with hardware designed in **EasyEDA** and mechanical assemblies realized in 
+**Fusion 360**, all versioned through **Git/GitHub**. On the intelligence side, 
+I work with **machine learning**, **deep learning** particularly on **computer vision**, and 
+**natural language processing**, using **TensorFlow** and **PyTorch** to develop 
+embedded intelligence and **digital twins** that close the loop between 
+perception, decision-making, and control. I regularly employ **sensor fusion**, 
+state estimation, and **Kalman filtering** to bridge noisy physical measurements
+with reliable control logic, particularly in autonomous systems such as 
+line-following and perception-guided robotic platforms. Frameworks like 
+**ROS 2** allow me to integrate learning pipelines with real-time systems, 
+ensuring that AI models coexist with firmware architectures—not as afterthoughts,
+but as first-class components of reliable, deployable machines.

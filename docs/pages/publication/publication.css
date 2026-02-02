@@ -1,0 +1,271 @@
+:root {
+  --bg: #fdfef894;
+  --text: #0b1c3d;
+  --muted: #54657f;
+  --accent: #2f5bd1;
+  --line: #505081;
+  --soft: #f5f8fd;
+  --font-body: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  --font-ui: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  --font: system-ui, -apple-system, Segoe UI, Roboto, Helvetica;
+  --container: 940px;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font);
+}
+
+.nav-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  width: min(var(--container), 92vw);
+  margin: 0 auto;
+}
+
+.site-name {
+  font-weight: 800;
+  font-size: 22px;
+  padding: 6px 10px;
+  border-radius: 12px;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.nav a {
+  color: var(--muted);
+  padding: 6px 4px;
+  position: relative;
+  text-decoration: none;
+}
+
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  bottom: -7px;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.22s ease;
+}
+
+.nav a:hover::after {
+  transform: scaleX(1);
+}
+
+.page {
+  width: min(var(--container), 92vw);
+  margin: 0 auto;
+  padding: 10px 0 60px;
+}
+
+.page-head {
+  text-align: center;
+  margin: 10px 0 18px;
+}
+
+#page-title {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 30px;
+  color: var(--text);
+  letter-spacing: 0.2px;
+}
+
+.page-subtitle {
+  margin: 8px auto 0;
+  color: var(--muted);
+  max-width: 700px;
+  font-size: 14px;
+}
+
+.filters {
+  border: 1px solid var(--line);
+  background: var(--soft);
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-family: var(--font-ui);
+  margin-bottom: 18px;
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  align-items: center;
+}
+
+.filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text);
+}
+
+.filter select,
+.filter input {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  padding: 6px 8px;
+  border: 1px solid #c7d2e5;
+  border-radius: 6px;
+  background: #fff;
+  color: var(--text);
+}
+
+.filter input {
+  width: min(320px, 70vw);
+}
+
+.search-row {
+  margin-top: 8px;
+}
+
+.filter-meta {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.pub-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.pub-year {
+  font-family: var(--font-ui);
+  font-size: 22px;
+  margin: 14px 0 0;
+  color: var(--text);
+}
+
+.pub-item {
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.pub-item:last-child {
+  border-bottom: none;
+}
+
+.pub-title {
+  font-family: var(--font-ui);
+  font-size: 16px;
+  margin: 0 0 6px;
+  color: var(--text);
+}
+
+.pub-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.pub-tag,
+.pub-status {
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid #c7d2e5;
+  font-family: var(--font-ui);
+}
+
+.pub-status {
+  border-color: #c8b06b;
+  color: #7a5b00;
+  background: #fff6d8;
+}
+
+.pub-cite {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.pub-links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.pub-link {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  padding: 5px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--accent);
+  text-decoration: none;
+  background: #fff;
+}
+
+.pub-link:hover {
+  border-color: var(--accent);
+}
+
+.empty {
+  font-family: var(--font-ui);
+  color: var(--muted);
+  font-size: 14px;
+}
+
+@media (max-width: 640px) {
+  .page-head {
+    text-align: left;
+  }
+
+  #page-title {
+    font-size: 26px;
+  }
+
+  .filter {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .filter input {
+    width: 100%;
+  }
+}
+
+@media (max-width: 760px) {
+  .nav {
+    gap: 12px;
+  }
+
+  .site-name {
+    font-size: 18px;
+  }
+}

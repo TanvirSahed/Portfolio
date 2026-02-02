@@ -1,0 +1,631 @@
+{
+  "page": {
+    "title": "Projects",
+    "subtitle": "Selected work across AI, embedded systems, and design.",
+    "labels": {
+      "overview": "Abstract",
+      "methodology": "Methodology",
+      "results": "Results"
+    },
+    "styles": {
+      "pageTitle": {
+        "color": "#1d273d",
+        "size": "30px",
+        "weight": "800",
+        "font": "system-ui, -apple-system, Segoe UI, Roboto, Helvetica",
+        "align": "center",
+        "letterSpacing": "0.2px"
+      },
+      "pageSubtitle": {
+        "color": "#475569",
+        "size": "15px",
+        "weight": "400",
+        "font": "system-ui, -apple-system, Segoe UI, Roboto, Helvetica",
+        "align": "center",
+        "lineHeight": "1.6"
+      },
+      "categoryTitle": {
+        "color": "#475569",
+        "size": "22px",
+        "weight": "600",
+        "font": "system-ui, -apple-system, Segoe UI, Roboto, Helvetica",
+        "align": "left",
+        "letterSpacing": "6.5px"
+      },
+      "categorySubtitle": {
+        "color": "#64748b",
+        "size": "14px",
+        "weight": "500",
+        "font": "system-ui, -apple-system, Segoe UI, Roboto, Helvetica",
+        "align": "left",
+        "lineHeight": "1.5"
+      },
+      "projectTitle": {
+        "color": "#1f2937",
+        "size": "17px",
+        "weight": "700",
+        "font": "system-ui, -apple-system, Segoe UI, Roboto, Helvetica",
+        "align": "left"
+      },
+      "sectionLabel": {
+        "color": "#64748b",
+        "size": "12px",
+        "weight": "700",
+        "font": "system-ui, -apple-system, Segoe UI, Roboto, Helvetica",
+        "textTransform": "uppercase",
+        "letterSpacing": "0.6px"
+      },
+      "overview": {
+        "color": "#475569",
+        "size": "14px",
+        "weight": "400",
+        "font": "system-ui, -apple-system, Segoe UI, Roboto, Helvetica",
+        "lineHeight": "1.6"
+      },
+      "bullet": {
+        "color": "#475569",
+        "size": "14px",
+        "weight": "400",
+        "font": "system-ui, -apple-system, Segoe UI, Roboto, Helvetica",
+        "lineHeight": "1.6"
+      },
+      "link": {
+        "color": "#2563eb",
+        "size": "13px",
+        "weight": "600",
+        "font": "system-ui, -apple-system, Segoe UI, Roboto, Helvetica",
+        "align": "left"
+      },
+      "imageCaption": {
+        "color": "#ffffff",
+        "size": "11px",
+        "weight": "600",
+        "font": "system-ui, -apple-system, Segoe UI, Roboto, Helvetica",
+        "align": "left"
+      }
+    },
+    "categoryUnderline": {
+      "enabled": true,
+      "color": "#2f5bd1",
+      "thickness": "4px",
+      "length": "140px",
+      "radius": "999px",
+      "gap": "10px",
+      "anchor": "left"
+    },
+    "activeCategoryTop": {
+      "paddingTop": "0px",
+      "borderTop": "0"
+    }
+  },
+  "tabs": {
+    "default": "AI",
+    "visibility": {
+      "AI": true,
+      "Embedded Systems": true,
+      "Design": false,
+      "Others": true
+    }
+  },
+  "projects": {
+    "AI": {
+      "subtitle": "",
+      "projects": {
+        "LipReading": {
+          "title": "Visual Speech Recognition Bengali Language (DL)",
+          "overview": "Lorem ipsum abstract for an anomaly classifier that studies sensor drift and event detection under resource limits.",
+          "methodology": [
+            "Short pipeline using compact features and rolling windows.",
+            "Controlled validation with calibrated thresholds.",
+            "Iteration focused on stable decision boundaries."
+          ],
+          "findings": [
+            "Reliable alerts with low false positives.",
+            "Stable performance across operating ranges."
+          ],
+          "link": {
+            "label": "View project",
+            "href": "https://example.com/ai-01"
+          },
+          "carousel": {
+            "enabled": true,
+            "width": "100%",
+            "height": "240px",
+            "showCaptions": false,
+            "images": ["assets/images/lipreading"]
+          }
+        },
+        "ETD": {
+          "title": "Electricity Theft Detection (ML)",
+          "overview": "Lorem ipsum abstract for a compact vision triage module that flags defects under constrained lighting.",
+          "methodology": [
+            "Small labeled set with targeted augmentation.",
+            "Inference profiling for throughput targets.",
+            "Calibration of confidence thresholds."
+          ],
+          "findings": [
+            "Consistent detection under mild noise.",
+            "Reduced inspection time per unit."
+          ],
+          "link": {
+            "label": "View project",
+            "href": "https://example.com/ai-02"
+          },
+          "carousel": {
+            "enabled": true,
+            "width": "100%",
+            "height": "240px",
+            "showCaptions": false,
+            "images": ["assets/images/etd"
+            ]
+          }
+        },
+        "ML-Cyber": {
+          "title": "Two stage Cyber attack Detection for Smart Grid (ML)",
+          "overview": "Lorem ipsum abstract for a forecasting pilot that tracks plant telemetry and short-horizon trends.",
+          "methodology": [
+            "Windowed features and rolling retraining.",
+            "Error analysis with seasonal baselines.",
+            "Latency checks for edge deployment."
+          ],
+          "findings": [
+            "Smooth forecasts with minimal lag.",
+            "Improved planning over static heuristics."
+          ],
+          "link": {
+            "label": "View project",
+            "href": "https://example.com/ai-03"
+          },
+          "carousel": {
+            "enabled": true,
+            "width": "100%",
+            "height": "240px",
+            "showCaptions": false,
+            "images": [
+              {
+                "src": "assets/images/photos/ai-03-1.jpg",
+                "alt": "Forecast chart",
+                "caption": "Result"
+              },
+              {
+                "src": "assets/images/photos/ai-03-2.jpg",
+                "alt": "Signal plot",
+                "caption": "Construction"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "Embedded Systems": {
+      "subtitle": "",
+      "projects": {
+        "IG ECU": {
+          "title": "Ignition System for Engine Control Unit_STM32",
+          "overview": "Lorem ipsum abstract for a motor controller emphasizing safe switching and stable torque response.",
+          "methodology": [
+            "Interrupt-driven loop with fixed timing budget.",
+            "PID tuning under variable load conditions.",
+            "Safety interlocks for fault cases."
+          ],
+          "findings": [
+            "Smooth direction changes under load.",
+            "Consistent thermal behavior in long runs."
+          ],
+          "link": {
+            "label": "View project",
+            "href": "https://example.com/emb-01"
+          },
+          "carousel": {
+            "enabled": true,
+            "width": "100%",
+            "height": "240px",
+            "showCaptions": false,
+            "images": [
+              {
+                "src": "assets/images/photos/emb-01-1.jpg",
+                "alt": "Motor rig",
+                "caption": "Result"
+              },
+              {
+                "src": "assets/images/photos/emb-01-2.jpg",
+                "alt": "Controller PCB",
+                "caption": "Construction"
+              }
+            ]
+          }
+        },
+        "7DOF Robotic ARM": {
+          "title": "Object Sorting by 7DOF Robotic ARM",
+          "overview": "Lorem ipsum abstract for an HMI refresh focused on operator speed and error reduction.",
+          "methodology": [
+            "Screen flow mapping with task timing.",
+            "Icon and color tests under factory lighting.",
+            "Iteration with operator feedback."
+          ],
+          "findings": [
+            "Faster navigation for common tasks.",
+            "Reduced input errors during shifts."
+          ],
+          "link": {
+            "label": "View project",
+            "href": "https://example.com/emb-02"
+          },
+          "carousel": {
+            "enabled": true,
+            "width": "100%",
+            "height": "240px",
+            "showCaptions": false,
+            "images": [
+              {
+                "src": "assets/images/photos/emb-02-1.jpg",
+                "alt": "HMI preview",
+                "caption": "Result"
+              },
+              {
+                "src": "assets/images/photos/emb-02-2.jpg",
+                "alt": "Panel build",
+                "caption": "Construction"
+              }
+            ]
+          }
+        },
+        "Motor Controller": {
+          "title": "Modbus Enabled Universal Motor Controller",
+          "overview": "Lorem ipsum abstract for a low-power sensor node with long-range telemetry.",
+          "methodology": [
+            "Duty-cycled radio scheduling.",
+            "Power profiling and sleep-state tuning.",
+            "Field testing for packet loss."
+          ],
+          "findings": [
+            "Stable telemetry at low power.",
+            "Predictable battery life in trials."
+          ],
+          "link": {
+            "label": "View project",
+            "href": "https://example.com/emb-03"
+          },
+          "carousel": {
+            "enabled": true,
+            "width": "100%",
+            "height": "240px",
+            "showCaptions": false,
+            "images": [
+              {
+                "src": "assets/images/photos/emb-03-1.jpg",
+                "alt": "Sensor node",
+                "caption": "Result"
+              },
+              {
+                "src": "assets/images/photos/emb-03-2.jpg",
+                "alt": "Enclosure view",
+                "caption": "Construction"
+              }
+            ]
+          }
+        },
+        "Lab Dyeing Machine": {
+          "title": "MCU powered Textile Lab Dyeing Machine",
+          "overview": "Lorem ipsum abstract for a voltage and current monitoring module with logging support.",
+          "methodology": [
+            "Calibration against reference meters.",
+            "Sampling strategy for noisy signals.",
+            "Storage integrity tests."
+          ],
+          "findings": [
+            "Consistent readings across loads.",
+            "Robust logs during power cycles."
+          ],
+          "link": {
+            "label": "View project",
+            "href": "https://example.com/emb-04"
+          },
+          "carousel": {
+            "enabled": true,
+            "width": "100%",
+            "height": "240px",
+            "showCaptions": false,
+            "images": [
+              {
+                "src": "assets/images/photos/emb-04-1.jpg",
+                "alt": "Monitor board",
+                "caption": "Result"
+              },
+              {
+                "src": "assets/images/photos/emb-04-2.jpg",
+                "alt": "Test bench",
+                "caption": "Construction"
+              }
+            ]
+          }
+        },
+        "Smart Flow-Meter": {
+          "title": "Water management system with Smart Flow-Meter",
+          "overview": "Lorem ipsum abstract for a fail-safe interlock with deterministic response.",
+          "methodology": [
+            "Fault injection and recovery checks.",
+            "State machine validation.",
+            "Latency profiling for shutdown."
+          ],
+          "findings": [
+            "Predictable shutdown behavior.",
+            "Clear fault isolation steps."
+          ],
+          "link": {
+            "label": "View project",
+            "href": "https://example.com/emb-05"
+          },
+          "carousel": {
+            "enabled": true,
+            "width": "100%",
+            "height": "240px",
+            "showCaptions": false,
+            "images": [
+              {
+                "src": "assets/images/photos/emb-05-1.jpg",
+                "alt": "Interlock wiring",
+                "caption": "Result"
+              },
+              {
+                "src": "assets/images/photos/emb-05-2.jpg",
+                "alt": "Relay board",
+                "caption": "Construction"
+              }
+            ]
+          }
+        },
+        "E-Grenade": {
+          "title": "ESP based Practise Grenade for Military Training",
+          "overview": "Lorem ipsum abstract for a Modbus gateway linking legacy devices.",
+          "methodology": [
+            "Protocol mapping and timing checks.",
+            "Error handling with retry analysis.",
+            "Integration tests with PLCs."
+          ],
+          "findings": [
+            "Clean logs with low retries.",
+            "Stable integration across shifts."
+          ],
+          "link": {
+            "label": "View project",
+            "href": "https://example.com/emb-06"
+          },
+          "carousel": {
+            "enabled": true,
+            "width": "100%",
+            "height": "240px",
+            "showCaptions": false,
+            "images": [
+              {
+                "src": "assets/images/photos/emb-06-1.jpg",
+                "alt": "Gateway preview",
+                "caption": "Result"
+              },
+              {
+                "src": "assets/images/photos/emb-06-2.jpg",
+                "alt": "Wiring layout",
+                "caption": "Construction"
+              }
+            ]
+          }
+        },
+        "Cosmo Clench Robot": {
+          "title": "Cosmo Clench Robot",
+          "overview": "Lorem ipsum abstract for a logger tuned for harsh environments.",
+          "methodology": [
+            "Storage wear analysis.",
+            "Data integrity checks with CRC.",
+            "Thermal endurance testing."
+          ],
+          "findings": [
+            "Reliable logs through power loss.",
+            "Consistent timestamps at scale."
+          ],
+          "link": {
+            "label": "View project",
+            "href": "https://example.com/emb-07"
+          },
+          "carousel": {
+            "enabled": true,
+            "width": "100%",
+            "height": "240px",
+            "showCaptions": false,
+            "images": [
+              {
+                "src": "assets/images/photos/emb-07-1.jpg",
+                "alt": "Data logger",
+                "caption": "Result"
+              },
+              {
+                "src": "assets/images/photos/emb-07-2.jpg",
+                "alt": "Firmware view",
+                "caption": "Construction"
+              }
+            ]
+          }
+        },
+        "Line following Robot": {
+          "title": "Line following Robot",
+          "overview": "Lorem ipsum abstract for an actuator control pack tuned for smooth motion.",
+          "methodology": [
+            "Torque curve tuning under load.",
+            "Feedback loop latency checks.",
+            "Mechanical integration tests."
+          ],
+          "findings": [
+            "Smooth response at low speeds.",
+            "Consistent behavior across cycles."
+          ],
+          "link": {
+            "label": "View project",
+            "href": "https://example.com/emb-08"
+          },
+          "carousel": {
+            "enabled": true,
+            "width": "100%",
+            "height": "240px",
+            "showCaptions": false,
+            "images": [
+              {
+                "src": "assets/images/photos/emb-08-1.jpg",
+                "alt": "Actuator rig",
+                "caption": "Result"
+              },
+              {
+                "src": "assets/images/photos/emb-08-2.jpg",
+                "alt": "Prototype board",
+                "caption": "Construction"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "Design": {
+      "subtitle": "",
+      "projects": {
+        "Compact Control Enclosure": {
+          "title": "Compact Control Enclosure",
+          "overview": "Fusion 360 study for a compact enclosure with serviceability and airflow targets.",
+          "methodology": [
+            "Design choices around venting and mounting.",
+            "Parametric iterations on panel thickness.",
+            "Fit checks for cable routing."
+          ],
+          "findings": [
+            "Clear access paths with tidy cable flow.",
+            "Reduced fastener count without losing rigidity."
+          ],
+          "link": {
+            "label": "View project",
+            "href": "https://example.com/design-01"
+          },
+          "carousel": {
+            "enabled": true,
+            "width": "100%",
+            "height": "240px",
+            "showCaptions": false,
+            "images": [
+              {
+                "src": "assets/images/photos/design-01-1.jpg",
+                "alt": "Enclosure render",
+                "caption": "Render"
+              },
+              {
+                "src": "assets/images/photos/design-01-2.jpg",
+                "alt": "Exploded view",
+                "caption": "Construction"
+              }
+            ]
+          }
+        },
+        "Modular Mounting System": {
+          "title": "Modular Mounting System",
+          "overview": "Fusion 360 modular bracket kit for quick alignment in field installations.",
+          "methodology": [
+            "Design choices for slot geometry and fasteners.",
+            "Tolerance studies for repeated assembly.",
+            "Stress checks for bracket deformation."
+          ],
+          "findings": [
+            "Quick assembly with stable alignment.",
+            "Consistent fit across mounting points."
+          ],
+          "link": {
+            "label": "View project",
+            "href": "https://example.com/design-02"
+          },
+          "carousel": {
+            "enabled": true,
+            "width": "100%",
+            "height": "240px",
+            "showCaptions": false,
+            "images": [
+              {
+                "src": "assets/images/photos/design-02-1.jpg",
+                "alt": "Mount render",
+                "caption": "Render"
+              },
+              {
+                "src": "assets/images/photos/design-02-2.jpg",
+                "alt": "Assembly detail",
+                "caption": "Construction"
+              }
+            ]
+          }
+        },
+        "Instrument Panel Layout": {
+          "title": "Instrument Panel Layout",
+          "overview": "Fusion 360 panel layout for a compact HMI with service access constraints.",
+          "methodology": [
+            "Design choices for spacing and visibility.",
+            "Iteration on control grouping.",
+            "Access checks for maintenance."
+          ],
+          "findings": [
+            "Cleaner sight lines and faster access.",
+            "Improved labeling clarity."
+          ],
+          "link": {
+            "label": "View project",
+            "href": "https://example.com/design-03"
+          },
+          "carousel": {
+            "enabled": true,
+            "width": "100%",
+            "height": "240px",
+            "showCaptions": false,
+            "images": [
+              {
+                "src": "assets/images/photos/design-03-1.jpg",
+                "alt": "Panel render",
+                "caption": "Render"
+              },
+              {
+                "src": "assets/images/photos/design-03-2.jpg",
+                "alt": "Detail view",
+                "caption": "Construction"
+              }
+            ]
+          }
+        },
+        "Cable Management Guide": {
+          "title": "Cable Management Guide",
+          "overview": "Fusion 360 routing guide for harnesses with bend radius targets.",
+          "methodology": [
+            "Design choices for clamp spacing and bends.",
+            "Routing checks against service clearances.",
+            "Stress points review for strain relief."
+          ],
+          "findings": [
+            "Reduced strain with tidy paths.",
+            "Cleaner maintenance access."
+          ],
+          "link": {
+            "label": "View project",
+            "href": "https://example.com/design-04"
+          },
+          "carousel": {
+            "enabled": true,
+            "width": "100%",
+            "height": "240px",
+            "showCaptions": false,
+            "images": [
+              {
+                "src": "assets/images/photos/design-04-1.jpg",
+                "alt": "Harness render",
+                "caption": "Render"
+              },
+              {
+                "src": "assets/images/photos/design-04-2.jpg",
+                "alt": "Routing detail",
+                "caption": "Construction"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

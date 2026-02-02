@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Publications</title>
+  <link rel="stylesheet" href="publication.css" />
+  <link rel="stylesheet" href="../../index.css" />
+</head>
+<body>
+  <header class="site-header skin-publication" data-common-nav>
+    <div class="nav-wrap">
+      <a class="site-name" id="nav-name-left" href="../home/home.html">Tanvir Sahed</a>
+      <nav class="nav" id="nav-items"></nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <header class="page-head">
+      <h1 id="page-title">Publications</h1>
+      <p class="page-subtitle" id="page-subtitle"></p>
+    </header>
+
+    <section class="filters" id="filter-controls">
+      <div class="filter-row">
+        <label class="filter" id="filter-year-wrap">
+          <span id="label-year">Filter by year:</span>
+          <select id="filter-year"></select>
+        </label>
+        <label class="filter" id="filter-type-wrap">
+          <span id="label-type">Filter by type:</span>
+          <select id="filter-type"></select>
+        </label>
+      </div>
+      <div class="filter-row search-row" id="search-wrap">
+        <label class="filter search">
+          <span id="label-search">Search:</span>
+          <input type="search" id="filter-search" />
+        </label>
+      </div>
+      <div class="filter-meta" id="filter-meta"></div>
+    </section>
+
+    <section class="pub-list" id="pub-list"></section>
+  </main>
+
+  <script src="../../index.js" defer data-nav-json="../../index.json"></script>
+  <script src="publication.js" defer></script>
+</body>
+</html>

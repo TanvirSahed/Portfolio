@@ -1,0 +1,52 @@
+{
+  "title": "Publications",
+  "subtitle": "Selected publications and works in progress.",
+  "features": {
+    "filters": true,
+    "yearFilter": true,
+    "typeFilter": true,
+    "search": true,
+    "yearGrouping": false
+  },
+  "labels": {
+    "filterYear": "Filter by year:",
+    "filterType": "Filter by type:",
+    "searchLabel": "Search:",
+    "searchPlaceholder": "Search by title, author, keyword",
+    "allYears": "All years",
+    "allTypes": "All types",
+    "showing": "Showing"
+  },
+  "types": [
+    "Journal article",
+    "Conference paper",
+    "Preprint",
+    "Under review"
+  ],
+  "publications": [
+    {
+      "title": "Title of Manuscript in Review",
+      "authors": "Tanvir Sahed",
+      "year": 2025,
+      "type": "Under review",
+      "venue": "Under review",
+      "status": "Under review",
+      "keywords": [
+        "signal processing",
+        "machine learning"
+      ]
+    },
+    {
+      "title": "Title of Conference Paper",
+      "authors": "Tanvir Sahed, Coauthor",
+      "year": 2024,
+      "type": "Conference paper",
+      "venue": "Proceedings of Example Conference",
+      "doi": "https://doi.org/10.0000/example",
+      "keywords": [
+        "embedded systems",
+        "control"
+      ]
+    }
+  ]
+}
