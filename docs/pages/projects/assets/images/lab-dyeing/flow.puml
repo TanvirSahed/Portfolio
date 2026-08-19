@@ -1,0 +1,159 @@
+@startuml
+title Lab Dyeing Machine Firmware Flow (Foreground + Interrupt/Hardware Paths)
+
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam activity {
+  BackgroundColor white
+  BorderColor black
+  ArrowColor black
+  StartColor black
+  EndColor black
+}
+skinparam note {
+  BorderColor black
+  BackgroundColor #FFFFE0
+}
+
+'========================
+' FOREGROUND (Superloop)
+'========================
+partition "Main Firmware (Foreground / Superloop)" {
+
+  start
+  :POWER ON / RESET;
+
+  :Initialize MCU + Peripherals;
+  note right
+    - GPIO (IR lamp, blower, motor control)
+    - UI UART (Nextion)
+    - RTD interface (PT100 front-end)
+    - Timer tick enabled (periodic control)
+    - Door/limit interrupt enabled
+    - Motor interface configured (drive/RS485)
+  end note
+
+  :Load saved parameters;
+  note right
+    Temp setpoint, cycle time, motor speed,
+    forward/reverse timing, PID params, etc.
+  end note
+
+  repeat
+    :Handle UI / User Commands;
+    note right
+      - Read UI events/messages
+      - Update setpoints (Temp / Time / Speed)
+      - Start / Stop / Reset/ack
+    end note
+
+    :Check Safety Flags + Conditions;
+    note right
+      Flags/conditions may be updated asynchronously by:
+      - Periodic Timer Tick (PID + counters)
+      - Door Limit Interrupt (door_open + fault latch)
+      - Hardware Thermostat Trip (power cut to IR)
+  end note
+
+    if (Fault latched OR Door open?) then (YES)
+      :Enter SAFE/FAULT mode;
+      :Disable IR lamp output;
+      :Disable blower (or safe policy);
+      :Stop motor command;
+      :Show FAULT on UI;
+
+      :Wait for recovery condition;
+      note right
+        Recovery example:
+        - Door closed
+        - User reset/ack pressed
+      end note
+    else (NO)
+
+      :Process State Machine;
+      note right
+        states:
+        - IDLE
+        - MULTI
+        - SINGLE
+        - PROG
+        - RUN
+      end note
+
+      if (Start requested?) then (YES)
+        :Run cycle (non-blocking control);
+      else (NO)
+        :Remain in IDLE / update UI;
+      endif
+
+      :Apply Control Outputs;
+      note right
+        Uses latest control values:
+        - IR lamp drive from PID output
+        - Blower assist for regulation
+        - Motor speed + direction sequencing
+      end note
+
+      :Update UI feedback;
+      note right
+        Temp, remaining time, state, alarms
+      end note
+    endif
+
+  repeat while (Power present?) is (YES)
+
+  stop
+}
+
+'=====================================
+' BACKGROUND: PERIODIC TIMER TICK ISR
+'=====================================
+partition "Periodic Timer Tick (ISR / Callback Path)" {
+  :Timer Tick Occurs (periodic);
+  note right
+    Keep ISR short:
+    - update shared variables
+    - set flags
+    - avoid heavy comms/UI here
+  end note
+
+  :Sample Temperature (PT100/RTD);
+  :Compute PID (Temp error -> control output);
+  :Update time counters (cycle/step timing);
+  :Update motor timing tick (dir switching schedule);
+}
+
+'=====================================
+' BACKGROUND: DOOR / LIMIT INTERRUPT
+'=====================================
+partition "Door Limit Sensor Interrupt (EXTI/INT)" {
+  :Door opens (edge detected);
+  note right
+    Separate interrupt vector from Timer1,
+    so it does not conflict with timer tick.
+  end note
+
+  :Latch DOOR_OPEN flag (volatile);
+  :Latch FAULT flag (volatile);
+  :Request outputs disable (flag);
+  note right
+    ISR does NOT do:
+    - motor stop frames
+    - UI updates
+    Main loop handles shutdown actions.
+  end note
+}
+
+'=====================================
+' HARDWARE SAFETY: THERMOSTAT CUT-OFF
+'=====================================
+partition "Hardware Thermostat (Independent Safety)" {
+  :Over-temperature trip;
+  :Cuts IR lamp power physically;
+  note right
+    Independent of firmware.
+    Fail-safe even if MCU hangs.
+  end note
+}
+
+@enduml

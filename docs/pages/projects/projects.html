@@ -29,9 +29,13 @@
 
   <div class="image-modal" id="image-modal" aria-hidden="true">
     <button class="image-close" id="image-close" type="button" aria-label="Close">x</button>
-    <div class="image-frame">
+    <button class="image-nav prev" id="image-prev" type="button" aria-label="Previous image">‹</button>
+    <button class="image-nav next" id="image-next" type="button" aria-label="Next image">›</button>
+    <div class="image-frame" id="image-frame">
       <img id="image-modal-img" alt="">
+      <div class="zoom-lens" id="zoom-lens" aria-hidden="true"></div>
       <p class="image-caption" id="image-modal-caption"></p>
+      <span class="image-modal-counter" id="image-modal-counter"></span>
     </div>
   </div>
 

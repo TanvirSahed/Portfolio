@@ -113,19 +113,19 @@
       "projects": {
         "LipReading": {
           "title": "Visual Speech Recognition Bengali Language (DL)",
-          "overview": "Lorem ipsum abstract for an anomaly classifier that studies sensor drift and event detection under resource limits.",
+          "overview": "Bridged the low-resource gap in Bengali visual speech recognition by building LipBengal, the first large-scale Bengali lip-reading dataset, and a 3D CNN + BiLSTM + CTC pipeline to validate it.",
           "methodology": [
-            "Short pipeline using compact features and rolling windows.",
-            "Controlled validation with calibrated thresholds.",
-            "Iteration focused on stable decision boundaries."
+            "Collected and pre-processed 1400+ hours of video across 150 Bengali speakers into a 500-word annotated lip-reading dataset.",
+            "Built a 3D CNN + BiLSTM + CTC pipeline for spatiotemporal feature extraction and sequence modeling, trained in TensorFlow 2.10 on a CUDA-enabled GPU.",
+            "Benchmarked dataset quality against LipNet-based baseline experiments."
           ],
           "findings": [
-            "Reliable alerts with low false positives.",
-            "Stable performance across operating ranges."
+            "Achieved 84.6% recognition accuracy on the held-out test set.",
+            "Published as first-author work in Data in Brief (Elsevier, Vol 58, 2025)."
           ],
           "link": {
-            "label": "View project",
-            "href": "https://example.com/ai-01"
+            "label": "GitHub repo",
+            "href": "https://github.com/TanvirSahed/Lip_Reading_Bengali"
           },
           "carousel": {
             "enabled": true,
@@ -194,6 +194,26 @@
               }
             ]
           }
+        },
+        "Tomato Classifier": {
+          "title": "Tomato Ripeness Classification (CNN)",
+          "overview": "Deep-learning image classifier that distinguishes ripe from unripe tomatoes in real time, benchmarking a custom CNN against transfer-learning baselines.",
+          "methodology": [
+            "Trained and compared three architectures (a custom 'tomato_model' CNN, VGG16, and ResNet50) on a labeled ripe/unripe tomato image set.",
+            "Built a train/test split pipeline with checkpointed model weights for reproducible evaluation.",
+            "Wired up real-time inference over an IP-Webcam video feed for live classification testing."
+          ],
+          "findings": [
+            "The lightweight custom CNN stayed competitive with the deeper transfer-learning baselines while running fast enough for real-time inference.",
+            "Pretrained weights are saved for drop-in reuse without retraining."
+          ],
+          "link": {
+            "label": "GitHub repo",
+            "href": "https://github.com/TanvirSahed/Detecting_Ripe_unRipe_tomatos"
+          },
+          "carousel": {
+            "enabled": false
+          }
         }
       }
     },
@@ -202,177 +222,128 @@
       "projects": {
         "IG ECU": {
           "title": "Ignition System for Engine Control Unit_STM32",
-          "overview": "Lorem ipsum abstract for a motor controller emphasizing safe switching and stable torque response.",
+          "overview": "Real-time ignition control unit for STM32F4, built at Creative Factory Labs for a German automotive client, calculating engine RPM from encoder feedback and dynamically timing coil dwell for precise spark control.",
           "methodology": [
-            "Interrupt-driven loop with fixed timing budget.",
-            "PID tuning under variable load conditions.",
-            "Safety interlocks for fault cases."
+            "Interrupt-driven design: TIM input-capture for pulse intervals, an EXTI callback for the index/TDC pulse, and timer-based RPM sampling every 50 ms.",
+            "Modular IS_Config / IS_State structs abstract hardware wiring from runtime state, with dwell time computed dynamically from live RPM.",
+            "UART debug shell streams RPM, dwell pulses, and timing accuracy for live calibration."
           ],
           "findings": [
-            "Smooth direction changes under load.",
-            "Consistent thermal behavior in long runs."
+            "Stable ignition timing with accurate spark delivery across a wide RPM range.",
+            "Slight timing drift only at low supply voltage and very high engine speed."
           ],
-          "link": {
-            "label": "View project",
-            "href": "https://example.com/emb-01"
-          },
+          "links": [
+            { "label": "Project site", "href": "https://tanvirsahed.github.io/Ignition_System_stm32/" },
+            { "label": "GitHub repo", "href": "https://github.com/TanvirSahed/Ignition_System_stm32" },
+            { "label": "Demo video", "href": "https://youtu.be/JYxdvyDtVA8" }
+          ],
           "carousel": {
             "enabled": true,
             "width": "100%",
             "height": "240px",
             "showCaptions": false,
-            "images": [
-              {
-                "src": "assets/images/photos/emb-01-1.jpg",
-                "alt": "Motor rig",
-                "caption": "Result"
-              },
-              {
-                "src": "assets/images/photos/emb-01-2.jpg",
-                "alt": "Controller PCB",
-                "caption": "Construction"
-              }
-            ]
+            "images": ["assets/images/ignition"]
           }
         },
         "7DOF Robotic ARM": {
-          "title": "Object Sorting by 7DOF Robotic ARM",
-          "overview": "Lorem ipsum abstract for an HMI refresh focused on operator speed and error reduction.",
+          "title": "Object Classification by a 7-DOF Robotic Arm Using MobileNet-SSD and Feedback Position Mapping",
+          "overview": "A 7-DOF MG996R/ATmega2560 robotic arm that classifies and sorts cups vs. bottles using MobileNet-SSDV3, controlled through feedback position mapping instead of kinematic equations. Published at IEEE QPAIN 2025, with a companion ROS2 (Humble) model for RViz2 visualization and Gazebo simulation.",
           "methodology": [
-            "Screen flow mapping with task timing.",
-            "Icon and color tests under factory lighting.",
-            "Iteration with operator feedback."
+            "A WiFi smartphone camera streams IP-Webcam video to a host PC running MobileNet-SSDV3 (COCO-pretrained) to detect and classify cups vs. bottles in real time.",
+            "Feedback position mapping replaces kinematics: an extra feedback wire on each MG996R servo lets the microcontroller read its live angle, so target poses are recorded once by hand-positioning the arm and replayed for pick-and-place, which is faster and lighter than solving kinematic equations.",
+            "A PCA9685 driver regulates 6V/1.5A per channel across the 7 servos; the ATmega2560 receives the detected object's class over serial and drives a tuned PD controller (Kp=2.2, Kd=0.7) for smooth, low-jitter motion.",
+            "Separately modeled the arm for ROS2 (Humble): exported the Fusion 360 assembly to a URDF/xacro description package (per-link STL meshes for the base and all 7 revolute joints), then wired robot_state_publisher + joint_state_publisher_gui to drive live TF and an RViz2 view, plus a parallel Gazebo launch for physics simulation, giving a reusable model independent of the on-hardware feedback-mapping control loop."
           ],
           "findings": [
-            "Faster navigation for common tasks.",
-            "Reduced input errors during shifts."
+            "81.25% object-detection accuracy and 90% sorting accuracy, completing a two-object sort cycle in ~2 seconds with 9/10 successful independent trials.",
+            "Sub-centimeter pose repeatability (mean error 0.53 cm, σ 0.44 cm over a 1,000-trial Monte Carlo simulation) with a 1.42 kg payload capacity, validating the feedback-mapping approach without kinematics.",
+            "The ROS2 URDF's TF tree (base_link through all 7 arm joints) matches the physical arm's geometry, giving a working RViz2/Gazebo model to build future motion-planning or closed-loop control on top of."
           ],
-          "link": {
-            "label": "View project",
-            "href": "https://example.com/emb-02"
-          },
+          "links": [
+            { "label": "Paper (IEEE)", "href": "https://doi.org/10.1109/QPAIN66474.2025.11171666" },
+            { "label": "GitHub repo", "href": "https://github.com/TanvirSahed/7DOF-robotic-ARM" },
+            { "label": "3D design", "href": "https://a360.co/4gH7ju0" },
+            { "label": "Demo video", "href": "https://youtube.com/shorts/5LcHwnB7o1Q?feature=share" }
+          ],
           "carousel": {
             "enabled": true,
             "width": "100%",
             "height": "240px",
             "showCaptions": false,
-            "images": [
-              {
-                "src": "assets/images/photos/emb-02-1.jpg",
-                "alt": "HMI preview",
-                "caption": "Result"
-              },
-              {
-                "src": "assets/images/photos/emb-02-2.jpg",
-                "alt": "Panel build",
-                "caption": "Construction"
-              }
-            ]
+            "images": ["assets/images/robotic-arm-7dof"]
           }
         },
         "Motor Controller": {
-          "title": "Modbus Enabled Universal Motor Controller",
-          "overview": "Lorem ipsum abstract for a low-power sensor node with long-range telemetry.",
+          "title": "Hydropower Plant Valve Motor Controller",
+          "overview": "Dual Modbus STM32F407 motor controller built for a hydropower plant's valve actuation system, driving stepper and brushed-DC motors for precise valve positioning and industrial automation integration.",
           "methodology": [
-            "Duty-cycled radio scheduling.",
-            "Power profiling and sleep-state tuning.",
-            "Field testing for packet loss."
+            "DM542T stepper and BTS7960 H-bridge DC drivers with PID-based closed-loop position/speed control from filtered quadrature-encoder feedback, used here for precise valve open/close positioning.",
+            "Dual Modbus stack: RTU over RS-485 for field devices, TCP/IP via a W5500 Ethernet chip for networked control, both DMA-driven for non-blocking UART.",
+            "Persistent SPI-flash (W25Qxx) storage for motor and network parameters, with watchdogs, PWM holding modes, and limit-sensor safety interlocks."
           ],
           "findings": [
-            "Stable telemetry at low power.",
-            "Predictable battery life in trials."
+            "Reliable closed-loop control with precise speed and direction regulation for valve actuation.",
+            "Stable Modbus RTU and TCP communication; only minor latency at extreme update rates."
           ],
-          "link": {
-            "label": "View project",
-            "href": "https://example.com/emb-03"
-          },
+          "links": [
+            { "label": "Project site", "href": "https://tanvirsahed.github.io/Modbus-Enabled-Motor-controller_stm32F4xx/" },
+            { "label": "GitHub repo", "href": "https://github.com/TanvirSahed/Modbus-Enabled-Motor-controller_stm32F4xx" },
+            { "label": "Demo video", "href": "https://youtu.be/Qg10PmLSoBo" }
+          ],
           "carousel": {
             "enabled": true,
             "width": "100%",
             "height": "240px",
             "showCaptions": false,
-            "images": [
-              {
-                "src": "assets/images/photos/emb-03-1.jpg",
-                "alt": "Sensor node",
-                "caption": "Result"
-              },
-              {
-                "src": "assets/images/photos/emb-03-2.jpg",
-                "alt": "Enclosure view",
-                "caption": "Construction"
-              }
-            ]
+            "images": ["assets/images/motor-controller"]
           }
         },
         "Lab Dyeing Machine": {
           "title": "MCU powered Textile Lab Dyeing Machine",
-          "overview": "Lorem ipsum abstract for a voltage and current monitoring module with logging support.",
+          "overview": "Closed-loop temperature and motor controller for a sample textile dyeing machine, more feature-rich than the PLC-based rig it replaces and built at about 20% of the cost.",
           "methodology": [
-            "Calibration against reference meters.",
-            "Sampling strategy for noisy signals.",
-            "Storage integrity tests."
+            "PID temperature control from a PT-100 sensor, holding tolerance within ±0.1°C.",
+            "An ATmega328 state machine drives a reversing induction motor over Modbus RTU, with a 12V inductive proximity sensor for a door-state interlock that instantly halts any running program.",
+            "A Nextion HMI, designed in Figma and driven over UART, replaces the machine's physical control panel."
           ],
           "findings": [
-            "Consistent readings across loads.",
-            "Robust logs during power cycles."
+            "Precise ±0.1°C temperature control and more repeatable speed control than the analogue original.",
+            "Precise timing control from the MCU's hardware timers."
           ],
           "link": {
-            "label": "View project",
-            "href": "https://example.com/emb-04"
+            "label": "GitHub repo",
+            "href": "https://github.com/TanvirSahed/Micro-controller-Powered-Lab-Dyeing-Machine-"
           },
           "carousel": {
             "enabled": true,
             "width": "100%",
             "height": "240px",
             "showCaptions": false,
-            "images": [
-              {
-                "src": "assets/images/photos/emb-04-1.jpg",
-                "alt": "Monitor board",
-                "caption": "Result"
-              },
-              {
-                "src": "assets/images/photos/emb-04-2.jpg",
-                "alt": "Test bench",
-                "caption": "Construction"
-              }
-            ]
+            "images": ["assets/images/lab-dyeing"]
           }
         },
         "Smart Flow-Meter": {
           "title": "Water management system with Smart Flow-Meter",
-          "overview": "Lorem ipsum abstract for a fail-safe interlock with deterministic response.",
+          "overview": "Low-cost, high-precision Modbus water flow meter with a companion Qt desktop app for shift-wise usage tracking, calibration, and remote viewing.",
           "methodology": [
-            "Fault injection and recovery checks.",
-            "State machine validation.",
-            "Latency profiling for shutdown."
+            "An ATmega328-based meter counts pulses from a Hall-effect flow sensor to derive volume and flow rate; circuit designed in EasyEDA.",
+            "A multithreaded Python/Qt app talks Modbus RTU to the meters and logs usage to Google Sheets via a service account for anywhere-access view-only links.",
+            "App layer adds limit setting, calibration, demand scheduling, and password-locked commands per device."
           ],
           "findings": [
-            "Predictable shutdown behavior.",
-            "Clear fault isolation steps."
+            "Calibrated to 0.005 tolerance against a reference meter.",
+            "A year of usage history stores and retrieves cleanly, with the threaded GUI staying responsive under load."
           ],
           "link": {
-            "label": "View project",
-            "href": "https://example.com/emb-05"
+            "label": "GitHub repo",
+            "href": "https://github.com/TanvirSahed/Smart-Water-Flow-Meter"
           },
           "carousel": {
             "enabled": true,
             "width": "100%",
             "height": "240px",
             "showCaptions": false,
-            "images": [
-              {
-                "src": "assets/images/photos/emb-05-1.jpg",
-                "alt": "Interlock wiring",
-                "caption": "Result"
-              },
-              {
-                "src": "assets/images/photos/emb-05-2.jpg",
-                "alt": "Relay board",
-                "caption": "Construction"
-              }
-            ]
+            "images": ["assets/images/flow-meter"]
           }
         },
         "E-Grenade": {
@@ -412,37 +383,22 @@
         },
         "Cosmo Clench Robot": {
           "title": "Cosmo Clench Robot",
-          "overview": "Lorem ipsum abstract for a logger tuned for harsh environments.",
+          "overview": "Wired-joystick pick-and-place robot arm built for the TechFest-IIT international robotics competition (IIT, India).",
           "methodology": [
-            "Storage wear analysis.",
-            "Data integrity checks with CRC.",
-            "Thermal endurance testing."
+            "Two servos lift the arm and two more actuate the claw, driven directly from an Arduino Uno.",
+            "A two-axis joystick's X/Y readings are mapped to servo angles in real time to control arm and gripper position.",
+            "Two DPDT switches handle chassis drive/steering independent of the arm control loop."
           ],
           "findings": [
-            "Reliable logs through power loss.",
-            "Consistent timestamps at scale."
+            "Servo motion tracked the joystick closely.",
+            "Gripper couldn't reliably close on objects wider than ~7 cm, a mechanical limit for a future revision."
           ],
           "link": {
-            "label": "View project",
-            "href": "https://example.com/emb-07"
+            "label": "GitHub repo",
+            "href": "https://github.com/TanvirSahed/CosmoClench_or_pickAndPlace_Robot_Arm"
           },
           "carousel": {
-            "enabled": true,
-            "width": "100%",
-            "height": "240px",
-            "showCaptions": false,
-            "images": [
-              {
-                "src": "assets/images/photos/emb-07-1.jpg",
-                "alt": "Data logger",
-                "caption": "Result"
-              },
-              {
-                "src": "assets/images/photos/emb-07-2.jpg",
-                "alt": "Firmware view",
-                "caption": "Construction"
-              }
-            ]
+            "enabled": false
           }
         },
         "Line following Robot": {
@@ -478,6 +434,45 @@
                 "caption": "Construction"
               }
             ]
+          }
+        },
+        "Gesture Joystick": {
+          "title": "Motion-Controlled Mouse via IMU Gesture Joystick",
+          "overview": "Handheld motion controller that emulates mouse movement and clicks from IMU gestures, aimed at hands-free motion control in gaming.",
+          "methodology": [
+            "An MPU6050 IMU streams 3-axis acceleration and gyroscope data to an Arduino Nano, which turns motion deltas into cursor increments.",
+            "A Python host script reads the serial stream and drives the system mouse (movement plus custom trigger buttons) from that data."
+          ],
+          "findings": [
+            "Cursor tracked hand movement accurately about 99% of the time.",
+            "Custom trigger buttons for click actions worked reliably."
+          ],
+          "link": {
+            "label": "GitHub repo",
+            "href": "https://github.com/TanvirSahed/Motion_controlled_joystick_using_Arduio"
+          },
+          "carousel": {
+            "enabled": false
+          }
+        },
+        "Gas Fire Alarm": {
+          "title": "IoT-Based Gas and Fire Detector",
+          "overview": "ESP8266-based safety alarm that detects gas leaks or fire and pushes an instant notification to the user's phone.",
+          "methodology": [
+            "An MQ-5 gas sensor and an IR flame sensor feed an ESP8266/ESP32, which publishes detections to the ThingSpeak IoT platform.",
+            "ThingSpeak triggers an IFTTT webhook that sends a push notification the moment gas or fire is detected.",
+            "The device auto-connects over a dedicated Wi-Fi hotspot for simple field deployment."
+          ],
+          "findings": [
+            "Detection reliability was constrained by the low-cost sensors used.",
+            "About 14 seconds of latency between a detection event and it being logged."
+          ],
+          "link": {
+            "label": "GitHub repo",
+            "href": "https://github.com/TanvirSahed/IOT_Based_Gas_and_Fire_Detector"
+          },
+          "carousel": {
+            "enabled": false
           }
         }
       }

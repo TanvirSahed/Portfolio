@@ -344,7 +344,7 @@
       "description": {
         "enabled": true,
         "type": "text",
-        "value": "I worked on applied R&D projects where reliability and clear user interaction mattered—spanning sensing, embedded control, and practical UI/HMI design. The focus was always on solutions that operators could actually use and maintain.",
+        "value": "I worked on applied R&D projects where reliability and clear user interaction mattered, spanning sensing, embedded control, and practical UI/HMI design. The focus was always on solutions that operators could actually use and maintain.",
         "color": "#334155",
         "size": "16px",
         "lineHeight": "1.6"

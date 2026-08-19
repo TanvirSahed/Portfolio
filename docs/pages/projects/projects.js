@@ -372,15 +372,27 @@ function buildProjectCard(project, styles, labels, modalEnabled, carouselId) {
   applyTextStyle(title, styles.projectTitle);
   titleRow.appendChild(title);
 
-  if (project.link && project.link.href) {
-    const link = document.createElement("a");
-    link.className = "project-link-inline";
-    link.href = project.link.href;
-    link.target = "_blank";
-    link.rel = "noreferrer";
-    link.textContent = project.link.label || "View project";
-    applyTextStyle(link, styles.link);
-    titleRow.appendChild(link);
+  const linkEntries = Array.isArray(project.links) && project.links.length
+    ? project.links
+    : (project.link && project.link.href ? [project.link] : []);
+
+  if (linkEntries.length) {
+    const linksWrap = document.createElement("div");
+    linksWrap.className = "project-links-inline";
+
+    linkEntries.forEach(entry => {
+      if (!entry || !entry.href) return;
+      const link = document.createElement("a");
+      link.className = "project-link-inline";
+      link.href = entry.href;
+      link.target = "_blank";
+      link.rel = "noreferrer";
+      link.textContent = entry.label || "View project";
+      applyTextStyle(link, styles.link);
+      linksWrap.appendChild(link);
+    });
+
+    titleRow.appendChild(linksWrap);
   }
 
   info.appendChild(titleRow);
@@ -451,7 +463,7 @@ function buildProjectCard(project, styles, labels, modalEnabled, carouselId) {
   const media = document.createElement("div");
   media.className = "project-media";
 
-  const carousel = createCarousel(project.carousel);
+  const carousel = createCarousel(project.carousel, modalEnabled);
   if (carousel) {
     carousel.classList.add("exp-carousel-block");
     media.appendChild(carousel);
@@ -462,7 +474,7 @@ function buildProjectCard(project, styles, labels, modalEnabled, carouselId) {
   return card;
 }
 
-function renderCarouselSlides(track, config, slides) {
+function renderCarouselSlides(track, config, slides, modalEnabled) {
   track.innerHTML = "";
 
   slides.forEach(img => {
@@ -481,6 +493,14 @@ function renderCarouselSlides(track, config, slides) {
       const image = document.createElement("img");
       image.src = img.src;
       image.alt = img.alt || "Carousel image";
+      if (modalEnabled) {
+        image.classList.add("is-zoomable");
+        image.addEventListener("click", () => {
+          const clickable = slides.filter(s => s && !s.placeholder && s.src);
+          const idx = clickable.indexOf(img);
+          openModal(clickable, idx >= 0 ? idx : 0);
+        });
+      }
       media.appendChild(image);
     }
 
@@ -497,7 +517,7 @@ function renderCarouselSlides(track, config, slides) {
   });
 }
 
-function createCarousel(config) {
+function createCarousel(config, modalEnabled) {
   if (!config || config.enabled === false) return null;
 
   const entries = normalizeCarouselEntries(config.images);
@@ -528,14 +548,14 @@ function createCarousel(config) {
   track.className = "car-track";
 
   if (hasDirEntry) {
-    renderCarouselSlides(track, config, [{ placeholder: true, placeholderText: "Loading images..." }]);
+    renderCarouselSlides(track, config, [{ placeholder: true, placeholderText: "Loading images..." }], modalEnabled);
     prev.style.display = "none";
     next.style.display = "none";
   } else {
     const slides = entries
       .filter(entry => entry.kind === "image" && (entry.src || entry.caption))
       .map(entry => ({ src: entry.src, alt: entry.alt, caption: entry.caption }));
-    renderCarouselSlides(track, config, slides.length ? slides : [{ placeholder: true }]);
+    renderCarouselSlides(track, config, slides.length ? slides : [{ placeholder: true }], modalEnabled);
   }
 
   viewport.appendChild(track);
@@ -552,13 +572,13 @@ function createCarousel(config) {
   if (hasDirEntry) {
     resolveCarouselImages(config.images).then((resolved) => {
       const slides = resolved.length ? resolved : [{ placeholder: true, placeholderText: "No images found." }];
-      renderCarouselSlides(track, config, slides);
+      renderCarouselSlides(track, config, slides, modalEnabled);
       prev.style.display = "";
       next.style.display = "";
       dots.style.display = "";
       initCarousel(wrap);
     }).catch(() => {
-      renderCarouselSlides(track, config, [{ placeholder: true, placeholderText: "Could not load images." }]);
+      renderCarouselSlides(track, config, [{ placeholder: true, placeholderText: "Could not load images." }], modalEnabled);
       prev.style.display = "";
       next.style.display = "";
       dots.style.display = "";
@@ -698,15 +718,102 @@ function buildTabs(categories, defaultKey, tabsWrap, sectionsWrap) {
   setActiveCategory(defaultCategory?.id || fallbackId, tabsWrap, sectionsWrap);
 }
 
-function openModal(src, alt, caption) {
-  const modal = $("#image-modal");
+let modalSlides = [];
+let modalIndex = 0;
+
+function renderModalSlide() {
   const img = $("#image-modal-img");
   const cap = $("#image-modal-caption");
+  const counter = $("#image-modal-counter");
+  const prevBtn = $("#image-prev");
+  const nextBtn = $("#image-next");
+  const lens = $("#zoom-lens");
+  if (!img || !cap) return;
 
-  if (!modal || !img || !cap) return;
-  img.src = src || "";
-  img.alt = alt || "";
-  cap.textContent = caption || "";
+  const slide = modalSlides[modalIndex];
+  if (!slide) return;
+
+  img.src = slide.src || "";
+  img.alt = slide.alt || "";
+  cap.textContent = slide.caption || "";
+
+  const multi = modalSlides.length > 1;
+  if (prevBtn) prevBtn.style.display = multi ? "" : "none";
+  if (nextBtn) nextBtn.style.display = multi ? "" : "none";
+  if (counter) counter.textContent = multi ? `${modalIndex + 1} / ${modalSlides.length}` : "";
+
+  if (lens) {
+    lens.style.backgroundImage = slide.src ? `url("${slide.src}")` : "";
+    lens.classList.remove("is-active");
+  }
+}
+
+const ZOOM_FACTOR = 2.5;
+
+function wireZoomLens() {
+  const frame = $("#image-frame");
+  const img = $("#image-modal-img");
+  const lens = $("#zoom-lens");
+  if (!frame || !img || !lens) return;
+
+  // Skip on touch-only devices; there's no hover to drive the lens there.
+  if (window.matchMedia && !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+
+  const moveLens = (clientX, clientY) => {
+    const frameRect = frame.getBoundingClientRect();
+    const imgRect = img.getBoundingClientRect();
+
+    // Cursor position within the rendered image, clamped to its bounds.
+    const x = Math.max(0, Math.min(clientX - imgRect.left, imgRect.width));
+    const y = Math.max(0, Math.min(clientY - imgRect.top, imgRect.height));
+
+    const lensW = lens.offsetWidth;
+    const lensH = lens.offsetHeight;
+
+    let lensLeft = (imgRect.left - frameRect.left) + x - lensW / 2;
+    let lensTop = (imgRect.top - frameRect.top) + y - lensH / 2;
+
+    const minLeft = imgRect.left - frameRect.left;
+    const maxLeft = minLeft + imgRect.width - lensW;
+    const minTop = imgRect.top - frameRect.top;
+    const maxTop = minTop + imgRect.height - lensH;
+
+    lensLeft = Math.max(minLeft, Math.min(lensLeft, maxLeft));
+    lensTop = Math.max(minTop, Math.min(lensTop, maxTop));
+
+    lens.style.left = `${lensLeft}px`;
+    lens.style.top = `${lensTop}px`;
+    lens.style.backgroundSize = `${imgRect.width * ZOOM_FACTOR}px ${imgRect.height * ZOOM_FACTOR}px`;
+    lens.style.backgroundPosition = `-${x * ZOOM_FACTOR - lensW / 2}px -${y * ZOOM_FACTOR - lensH / 2}px`;
+  };
+
+  img.addEventListener("mouseenter", () => lens.classList.add("is-active"));
+  img.addEventListener("mouseleave", () => lens.classList.remove("is-active"));
+  img.addEventListener("mousemove", (e) => moveLens(e.clientX, e.clientY));
+}
+
+function modalPrev() {
+  if (!modalSlides.length) return;
+  modalIndex = (modalIndex - 1 + modalSlides.length) % modalSlides.length;
+  renderModalSlide();
+}
+
+function modalNext() {
+  if (!modalSlides.length) return;
+  modalIndex = (modalIndex + 1) % modalSlides.length;
+  renderModalSlide();
+}
+
+function openModal(slides, index) {
+  const modal = $("#image-modal");
+  if (!modal) return;
+
+  modalSlides = Array.isArray(slides) ? slides.filter(s => s && s.src) : [];
+  if (!modalSlides.length) return;
+
+  modalIndex = Math.max(0, Math.min(index || 0, modalSlides.length - 1));
+
+  renderModalSlide();
   modal.classList.add("is-open");
   modal.setAttribute("aria-hidden", "false");
 }
@@ -721,16 +828,24 @@ function closeModal() {
 function wireModal(closeLabel) {
   const modal = $("#image-modal");
   const closeBtn = $("#image-close");
+  const prevBtn = $("#image-prev");
+  const nextBtn = $("#image-next");
 
   if (!modal || !closeBtn) return;
   if (closeLabel) closeBtn.textContent = closeLabel;
 
   closeBtn.addEventListener("click", closeModal);
+  if (prevBtn) prevBtn.addEventListener("click", modalPrev);
+  if (nextBtn) nextBtn.addEventListener("click", modalNext);
+
   modal.addEventListener("click", (e) => {
     if (e.target === modal) closeModal();
   });
   document.addEventListener("keydown", (e) => {
+    if (!modal.classList.contains("is-open")) return;
     if (e.key === "Escape") closeModal();
+    else if (e.key === "ArrowLeft") modalPrev();
+    else if (e.key === "ArrowRight") modalNext();
   });
 }
 
@@ -759,6 +874,7 @@ function wireModal(closeLabel) {
 
   const modalEnabled = data.modal?.enabled !== false;
   wireModal(data.modal?.closeLabel || "Close");
+  wireZoomLens();
 
   const sectionsWrap = $("#project-sections");
   const tabsWrap = $("#project-tabs");

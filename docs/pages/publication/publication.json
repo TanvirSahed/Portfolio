@@ -25,27 +25,30 @@
   ],
   "publications": [
     {
-      "title": "Title of Manuscript in Review",
-      "authors": "Tanvir Sahed",
+      "title": "LipBengal: Pioneering Bengali lip-reading dataset for pronunciation mapping through lip gestures",
+      "authors": "Sahed, M.T.R., Aronnio, M.T.I., Neyem, ...",
       "year": 2025,
-      "type": "Under review",
-      "venue": "Under review",
-      "status": "Under review",
+      "type": "Journal article",
+      "venue": "Vol 58, Data in Brief, Elsevier",
+      "doi": "10.1016/j.dib.2024.111254",
+      "status": "published",
       "keywords": [
         "signal processing",
         "machine learning"
       ]
     },
     {
-      "title": "Title of Conference Paper",
-      "authors": "Tanvir Sahed, Coauthor",
-      "year": 2024,
+      "title": "Object Classification by a 7-DOF Robotic Arm Using MobileNet-SSD and Feedback Position Mapping",
+      "authors": "Sahed, T.R., Islam, S.R., Aronno, M.T.I., Chowdhury, M.S.R.",
+      "year": 2025,
       "type": "Conference paper",
-      "venue": "Proceedings of Example Conference",
-      "doi": "https://doi.org/10.0000/example",
+      "venue": "2025 International Conference on Quantum Photonics, Artificial Intelligence, and Networking (QPAIN), Rangpur, Bangladesh",
+      "doi": "10.1109/QPAIN66474.2025.11171666",
+      "status": "published",
       "keywords": [
-        "embedded systems",
-        "control"
+        "computer vision",
+        "robotics",
+        "embedded systems"
       ]
     }
   ]

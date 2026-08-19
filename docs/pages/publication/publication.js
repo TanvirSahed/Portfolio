@@ -37,85 +37,122 @@ function matchesQuery(pub, query) {
   return normalize(hay).includes(normalize(query));
 }
 
-function createCitation(pub) {
-  const p = document.createElement("p");
-  p.className = "pub-cite";
-
-  const addText = (text) => {
-    if (!text) return;
-    p.appendChild(document.createTextNode(text));
-  };
-
-  if (pub.authors) addText(`${pub.authors} `);
-  if (pub.year) addText(`(${pub.year}). `);
-  if (pub.title) addText(`${pub.title}. `);
-  if (pub.venue) {
-    const em = document.createElement("em");
-    em.textContent = pub.venue;
-    p.appendChild(em);
-    p.appendChild(document.createTextNode(". "));
-  }
-  if (pub.note) addText(pub.note);
-
-  return p;
+function isProbablyDoi(value) {
+  return /^10\.\d{4,9}\/[-._;()/:A-Z0-9]+$/i.test(String(value || "").trim());
 }
 
-function createLinks(pub) {
-  const wrap = document.createElement("div");
-  wrap.className = "pub-links";
+function toDoiHref(doiOrUrl) {
+  const raw = String(doiOrUrl || "").trim();
+  if (!raw) return "";
+  if (/^https?:\/\//i.test(raw)) return raw;
+  if (isProbablyDoi(raw)) return `https://doi.org/${raw}`;
+  return raw;
+}
 
-  const links = [];
-  if (Array.isArray(pub.links)) {
-    pub.links.forEach(link => {
-      if (link && link.href && link.label) links.push(link);
-    });
-  } else {
-    if (pub.doi) links.push({ label: "DOI", href: pub.doi });
-    if (pub.url) links.push({ label: pub.urlLabel || "Link", href: pub.url });
+function toDoiLabel(doiOrUrl) {
+  const raw = String(doiOrUrl || "").trim();
+  if (!raw) return "";
+
+  const match = raw.match(/doi\.org\/(10\.\d{4,9}\/[-._;()/:A-Z0-9]+)\b/i);
+  if (match) return match[1];
+
+  if (isProbablyDoi(raw)) return raw;
+
+  return raw.replace(/^https?:\/\//i, "");
+}
+
+function resolveViewLink(pub) {
+  if (pub?.view && typeof pub.view === "object") {
+    const href = String(pub.view.href || "").trim();
+    if (href) return { href, label: pub.view.label || "View" };
   }
 
-  links.forEach(link => {
-    const a = document.createElement("a");
-    a.className = "pub-link";
-    a.href = link.href;
-    a.target = "_blank";
-    a.rel = "noreferrer";
-    a.textContent = link.label;
-    wrap.appendChild(a);
-  });
+  if (pub?.doi) {
+    const href = toDoiHref(pub.doi);
+    if (href) return { href, label: pub.viewLabel || toDoiLabel(pub.doi) || "View" };
+  }
 
-  return wrap;
+  if (pub?.url) {
+    const href = String(pub.url || "").trim();
+    if (href) return { href, label: pub.urlLabel || "View" };
+  }
+
+  if (Array.isArray(pub?.links)) {
+    const first = pub.links.find(link => link && link.href);
+    if (first) return { href: first.href, label: first.label || "View" };
+  }
+
+  return null;
 }
 
 function createItem(pub) {
   const article = document.createElement("article");
   article.className = "pub-item";
 
+  const heading = document.createElement("div");
+  heading.className = "pub-heading";
+
   const title = document.createElement("h3");
   title.className = "pub-title";
   title.textContent = pub.title || "Untitled";
-  article.appendChild(title);
+  heading.appendChild(title);
 
-  const meta = document.createElement("div");
-  meta.className = "pub-meta";
-  if (pub.type) {
-    const type = document.createElement("span");
-    type.className = "pub-tag";
-    type.textContent = pub.type;
-    meta.appendChild(type);
+  if (pub.year) {
+    const year = document.createElement("span");
+    year.className = "pub-year";
+    year.textContent = pub.year;
+    heading.appendChild(year);
   }
-  if (pub.status) {
-    const status = document.createElement("span");
-    status.className = "pub-status";
-    status.textContent = pub.status;
-    meta.appendChild(status);
+
+  article.appendChild(heading);
+
+  const details = document.createElement("p");
+  details.className = "pub-details";
+
+  const appendPart = (node) => {
+    if (!node) return;
+    if (details.childNodes.length) {
+      const sep = document.createElement("span");
+      sep.className = "pub-sep";
+      sep.textContent = " | ";
+      details.appendChild(sep);
+    }
+    details.appendChild(node);
+  };
+
+  if (pub.authors) {
+    const authors = document.createElement("span");
+    authors.className = "pub-authors";
+    authors.textContent = pub.authors;
+    appendPart(authors);
   }
-  if (meta.children.length) article.appendChild(meta);
 
-  article.appendChild(createCitation(pub));
+  if (pub.venue) {
+    const venue = document.createElement("span");
+    venue.className = "pub-venue";
+    venue.textContent = pub.venue;
+    appendPart(venue);
+  }
 
-  const links = createLinks(pub);
-  if (links.children.length) article.appendChild(links);
+  if (pub.note) {
+    const note = document.createElement("span");
+    note.className = "pub-note";
+    note.textContent = pub.note;
+    appendPart(note);
+  }
+
+  const view = resolveViewLink(pub);
+  if (view) {
+    const a = document.createElement("a");
+    a.className = "pub-view";
+    a.href = view.href;
+    a.target = "_blank";
+    a.rel = "noreferrer";
+    a.textContent = view.label;
+    appendPart(a);
+  }
+
+  if (details.childNodes.length) article.appendChild(details);
 
   return article;
 }
@@ -157,7 +194,7 @@ function renderList(pubs, features) {
 
     [...grouped.keys()].sort((a, b) => Number(b) - Number(a)).forEach(year => {
       const heading = document.createElement("h2");
-      heading.className = "pub-year";
+      heading.className = "pub-year-group";
       heading.textContent = year;
       list.appendChild(heading);
 
