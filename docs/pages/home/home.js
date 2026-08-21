@@ -573,6 +573,44 @@ function renderAwards(aw) {
   startAuto();
 }
 
+function arcReactorHTML() {
+  const segments = Array.from({ length: 10 }, (_, i) =>
+    `<rect x="97" y="14" width="6" height="22" rx="2" fill="url(#reactorRing)" transform="rotate(${i * 36} 100 100)"></rect>`
+  ).join("");
+
+  return `
+    <div class="arc-reactor" aria-hidden="true">
+      <svg class="arc-reactor-svg" viewBox="0 0 200 200">
+        <defs>
+          <radialGradient id="reactorCore" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#eafcff"></stop>
+            <stop offset="35%" stop-color="#8fe3ff"></stop>
+            <stop offset="70%" stop-color="#2fb6ff"></stop>
+            <stop offset="100%" stop-color="#0a3d66" stop-opacity="0"></stop>
+          </radialGradient>
+          <radialGradient id="reactorHousing" cx="50%" cy="50%" r="50%">
+            <stop offset="60%" stop-color="#1b2430"></stop>
+            <stop offset="100%" stop-color="#0a0e14"></stop>
+          </radialGradient>
+          <linearGradient id="reactorRing" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#7fe0ff"></stop>
+            <stop offset="100%" stop-color="#1b8fd1"></stop>
+          </linearGradient>
+        </defs>
+
+        <circle cx="100" cy="100" r="96" fill="url(#reactorHousing)" stroke="#33414f" stroke-width="2"></circle>
+        <circle cx="100" cy="100" r="86" fill="none" stroke="#2a3542" stroke-width="6"></circle>
+
+        <g class="arc-reactor-segments">${segments}</g>
+
+        <circle class="arc-reactor-innerring" cx="100" cy="100" r="46" fill="none" stroke="url(#reactorRing)" stroke-width="4"></circle>
+        <circle class="arc-reactor-core" cx="100" cy="100" r="34" fill="url(#reactorCore)"></circle>
+        <circle class="arc-reactor-hot" cx="100" cy="100" r="14" fill="#ffffff"></circle>
+      </svg>
+    </div>
+  `;
+}
+
 function renderFooter(foot) {
   if (!foot) return;
   const root = document.querySelector(".site-footer");
@@ -626,9 +664,16 @@ function renderFooter(foot) {
 
   if (map) {
     if (foot.map?.embed) {
+      map.classList.remove("has-reactor");
       map.innerHTML = foot.map.embed;
     } else if (foot.map?.image) {
+      map.classList.remove("has-reactor");
       map.innerHTML = `<img src="${foot.map.image}" alt="Map">`;
+    } else {
+      // No real map configured: fill the slot with a self-contained animated
+      // centerpiece instead of leaving an empty box.
+      map.classList.add("has-reactor");
+      map.innerHTML = arcReactorHTML();
     }
   }
 

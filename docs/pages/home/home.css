@@ -611,7 +611,7 @@ a{ color:inherit; text-decoration:none; }
   display:grid;
   grid-template-columns: var(--foot-mid-cols, 1fr 320px);
   gap: var(--foot-mid-gap, 18px);
-  align-items:start;
+  align-items:stretch;
 }
 .foot-form{
   display:grid;
@@ -663,6 +663,65 @@ a{ color:inherit; text-decoration:none; }
 }
 .foot-map iframe, .foot-map img{
   width:100%; height:100%; border:0;
+}
+
+/* Arc-reactor centerpiece: fills the map slot when no real map is configured */
+.foot-map.has-reactor{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:16px;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(47,182,255,.18), transparent 60%),
+    radial-gradient(circle at 50% 50%, #101820, #05070a 75%);
+  border-color:#0a0e14;
+}
+.arc-reactor{ width:100%; height:100%; display:flex; align-items:center; justify-content:center; }
+.arc-reactor-svg{
+  width: min(88%, 220px);
+  height:auto;
+  filter: drop-shadow(0 0 20px rgba(47,182,255,.5));
+}
+.arc-reactor-segments{
+  transform-origin:100px 100px;
+  animation: reactor-spin 16s linear infinite;
+}
+.arc-reactor-segments rect{
+  filter: drop-shadow(0 0 4px rgba(143,227,255,.9));
+}
+.arc-reactor-innerring{
+  transform-origin:100px 100px;
+  animation: reactor-pulse-ring 3.2s ease-in-out infinite;
+}
+.arc-reactor-core{
+  transform-origin:100px 100px;
+  animation: reactor-pulse-core 3.2s ease-in-out infinite;
+}
+.arc-reactor-hot{
+  transform-origin:100px 100px;
+  animation: reactor-flicker 2.6s ease-in-out infinite;
+}
+
+@keyframes reactor-spin{ to{ transform:rotate(360deg); } }
+@keyframes reactor-pulse-ring{
+  0%,100%{ opacity:.65; stroke-width:4; }
+  50%{ opacity:1; stroke-width:6; }
+}
+@keyframes reactor-pulse-core{
+  0%,100%{ transform:scale(1); opacity:.9; }
+  50%{ transform:scale(1.08); opacity:1; }
+}
+@keyframes reactor-flicker{
+  0%,100%{ opacity:.85; }
+  45%{ opacity:1; }
+  50%{ opacity:.7; }
+  55%{ opacity:1; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .arc-reactor-segments, .arc-reactor-innerring, .arc-reactor-core, .arc-reactor-hot{
+    animation: none;
+  }
 }
 
 .foot-bottom{
