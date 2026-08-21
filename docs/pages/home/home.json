@@ -60,7 +60,7 @@
   },
   "featuredProjects": {
     "title": "Featured Projects",
-    "subtitle": "Research, engineering, and design projects (scroll one-by-one).",
+    "subtitle": "Research, engineering, and design projects",
     "viewAll": { "label": "View all projects", "href": "../projects/projects.html" },
     "projectsData": "../projects/projects.json",
     "learnMoreLabel": "Learn more",
@@ -115,7 +115,7 @@
   },
   "awards": {
     "title": "Awards & Certifications",
-    "subtitle": "A visual wall of achievements. Hover to zoom; click to open.",
+    "subtitle": "A visual wall of achievements",
     "autoScrollMs": 4500,
     "items": [
       { "title": "IEEE COMPAS 2025, Paper Presentation", "thumb": "assets/images/Certificates/conf_1.jpg", "href": "assets/images/Certificates/conf_1.jpg" },
