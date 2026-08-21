@@ -127,7 +127,7 @@
         "width": "100%",
         "height": "480px",
         "showCaptions": false,
-        "images": ["assets/images/photos/ramist"]
+        "images": ["assets/images/photos/ramist/p0.jpg", "assets/images/photos/ramist/p1.webp", "assets/images/photos/ramist/p2.webp", "assets/images/photos/ramist/p3.webp", "assets/images/photos/ramist/p4.webp", "assets/images/photos/ramist/p5.webp", "assets/images/photos/ramist/p7.webp", "assets/images/photos/ramist/p8.webp", "assets/images/photos/ramist/p9.webp", "assets/images/photos/ramist/p10.webp"]
       },
       "links": {
         "enabled": false,
@@ -206,7 +206,7 @@
         "width": "100%",
         "height": "480px",
         "showCaptions": false,
-        "images": ["assets/images/photos/vip"]
+        "images": ["assets/images/photos/vip/p0.webp", "assets/images/photos/vip/p2.webp", "assets/images/photos/vip/p3.webp", "assets/images/photos/vip/p4.webp", "assets/images/photos/vip/p6.webp"]
       },
       "links": {
         "enabled": false,
@@ -285,7 +285,7 @@
         "width": "100%",
         "height": "480px",
         "showCaptions": false,
-        "images": ["assets/images/photos/cfl"]
+        "images": ["assets/images/photos/cfl/p1.webp", "assets/images/photos/cfl/p2.webp", "assets/images/photos/cfl/p3.webp", "assets/images/photos/cfl/p4.webp", "assets/images/photos/cfl/p5.webp", "assets/images/photos/cfl/p6.webp", "assets/images/photos/cfl/p7.webp", "assets/images/photos/cfl/p8.webp", "assets/images/photos/cfl/p9.webp", "assets/images/photos/cfl/p10.webp", "assets/images/photos/cfl/p12.webp", "assets/images/photos/cfl/p22.webp"]
       },
       "links": {
         "enabled": false,
@@ -365,7 +365,7 @@
         "width": "100%",
         "height": "480px",
         "showCaptions": false,
-        "images": ["assets/images/photos/nr"]
+        "images": ["assets/images/photos/nr/p0.webp", "assets/images/photos/nr/p2.webp", "assets/images/photos/nr/p3.webp", "assets/images/photos/nr/p4.webp", "assets/images/photos/nr/p5.webp", "assets/images/photos/nr/p6.webp", "assets/images/photos/nr/p7.webp", "assets/images/photos/nr/p8.webp", "assets/images/photos/nr/p9.webp", "assets/images/photos/nr/p10.webp", "assets/images/photos/nr/p11.webp", "assets/images/photos/nr/p12.webp", "assets/images/photos/nr/p13.webp", "assets/images/photos/nr/p14.webp", "assets/images/photos/nr/p15.webp", "assets/images/photos/nr/p16.webp", "assets/images/photos/nr/p17.webp", "assets/images/photos/nr/p18.webp", "assets/images/photos/nr/p19.webp", "assets/images/photos/nr/p20.webp", "assets/images/photos/nr/p21.webp", "assets/images/photos/nr/p22.webp", "assets/images/photos/nr/p23.webp", "assets/images/photos/nr/p24.webp", "assets/images/photos/nr/p25.webp"]
       },
       "links": {
         "enabled": false,
@@ -444,7 +444,7 @@
         "width": "100%",
         "height": "480px",
         "showCaptions": false,
-        "images": ["assets/images/photos/epel"]
+        "images": ["assets/images/photos/epel/p0.webp", "assets/images/photos/epel/p1.webp", "assets/images/photos/epel/p2.webp", "assets/images/photos/epel/p3.webp", "assets/images/photos/epel/p4.webp", "assets/images/photos/epel/p5.webp", "assets/images/photos/epel/p6.webp", "assets/images/photos/epel/p7.webp", "assets/images/photos/epel/p9.webp", "assets/images/photos/epel/p10.webp", "assets/images/photos/epel/p11.webp", "assets/images/photos/epel/p12.webp", "assets/images/photos/epel/p13.webp", "assets/images/photos/epel/p14.webp", "assets/images/photos/epel/p15.webp", "assets/images/photos/epel/p16.webp", "assets/images/photos/epel/p17.webp", "assets/images/photos/epel/p18.webp", "assets/images/photos/epel/p28.webp", "assets/images/photos/epel/p37.webp", "assets/images/photos/epel/p44.webp", "assets/images/photos/epel/p50.webp", "assets/images/photos/epel/p56.webp", "assets/images/photos/epel/p65.webp", "assets/images/photos/epel/p71.webp", "assets/images/photos/epel/p74.webp", "assets/images/photos/epel/p98.webp", "assets/images/photos/epel/p105.webp"]
       },
       "links": {
         "enabled": false,
@@ -522,7 +522,7 @@
         "width": "100%",
         "height": "480px",
         "showCaptions": false,
-        "images": ["assets/images/photos/sf"]
+        "images": ["assets/images/photos/sf/p2.webp", "assets/images/photos/sf/p3.webp", "assets/images/photos/sf/p4.webp", "assets/images/photos/sf/p5.webp", "assets/images/photos/sf/p6.webp", "assets/images/photos/sf/p7.webp", "assets/images/photos/sf/p8.webp", "assets/images/photos/sf/p10.webp"]
       },
       "links": {
         "enabled": false,
@@ -601,7 +601,7 @@
         "width": "100%",
         "height": "480px",
         "showCaptions": false,
-        "images": ["assets/images/photos/mrc"]
+        "images": ["assets/images/photos/mrc/p0.webp", "assets/images/photos/mrc/p2.webp", "assets/images/photos/mrc/p3.webp", "assets/images/photos/mrc/p4.webp", "assets/images/photos/mrc/p5.webp", "assets/images/photos/mrc/p6.webp", "assets/images/photos/mrc/p7.webp", "assets/images/photos/mrc/p8.webp", "assets/images/photos/mrc/p9.webp"]
       },
       "links": {
         "enabled": false,

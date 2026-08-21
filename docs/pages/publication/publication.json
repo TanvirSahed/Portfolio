@@ -26,7 +26,8 @@
   "publications": [
     {
       "title": "LipBengal: Pioneering Bengali lip-reading dataset for pronunciation mapping through lip gestures",
-      "authors": "Sahed, M.T.R., Aronnio, M.T.I., Neyem, ...",
+      "authors": "Sahed, M.T.R., Aronno, M.T.I., Nyeem, H., Wahed, M.A., Ahsan, T., Islam, R.R., et al.",
+      "firstAuthor": true,
       "year": 2025,
       "type": "Journal article",
       "venue": "Vol 58, Data in Brief, Elsevier",
@@ -38,8 +39,25 @@
       ]
     },
     {
+      "title": "SecureGrid: A robust voting ensemble model for non-technical loss (NTL) detection in smart meter data",
+      "authors": "Molla, M.S.H., Aronno, M.T.I., Sahed, M.T.R., Zishan, M.N.M., Islam, A.K.M.N.",
+      "firstAuthor": false,
+      "year": 2025,
+      "type": "Conference paper",
+      "venue": "2025 IEEE 2nd International Conference on Computing, Applications and Systems (COMPAS)",
+      "url": "https://ieeexplore.ieee.org/document/11381615/",
+      "urlLabel": "IEEE Xplore",
+      "status": "published",
+      "keywords": [
+        "smart grid",
+        "machine learning",
+        "electricity theft detection"
+      ]
+    },
+    {
       "title": "Object Classification by a 7-DOF Robotic Arm Using MobileNet-SSD and Feedback Position Mapping",
       "authors": "Sahed, T.R., Islam, S.R., Aronno, M.T.I., Chowdhury, M.S.R.",
+      "firstAuthor": true,
       "year": 2025,
       "type": "Conference paper",
       "venue": "2025 International Conference on Quantum Photonics, Artificial Intelligence, and Networking (QPAIN), Rangpur, Bangladesh",
@@ -49,6 +67,40 @@
         "computer vision",
         "robotics",
         "embedded systems"
+      ]
+    },
+    {
+      "title": "Machine Learning and Explainable AI for Robust Smart Grid Security: A New Dataset Study",
+      "authors": "Aronno, M.T.I., Molla, M.S.H., Sahed, M.T.R., Zishan, M.N.M.",
+      "firstAuthor": false,
+      "year": 2026,
+      "type": "Conference paper",
+      "venue": "2026 IEEE 2nd International Conference on Quantum Photonics, Artificial Intelligence & Networking (QPAIN)",
+      "note": "In press",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=DOUfU_EAAAAJ&citation_for_view=DOUfU_EAAAAJ:qjMakFHDy7sC",
+      "urlLabel": "Google Scholar",
+      "status": "in press",
+      "keywords": [
+        "smart grid",
+        "explainable AI",
+        "cybersecurity"
+      ]
+    },
+    {
+      "title": "An Explainable Machine Learning Framework for Dysarthria Detection Using Deep Acoustic Embeddings and Prosodic Cues",
+      "authors": "Aronno, M.T.I., Molla, M.S.H., Rahman, M.S., Sahed, M.T.R.",
+      "firstAuthor": false,
+      "year": 2026,
+      "type": "Conference paper",
+      "venue": "2026 IEEE 2nd International Conference on Quantum Photonics, Artificial Intelligence & Networking (QPAIN)",
+      "note": "In press",
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=DOUfU_EAAAAJ&citation_for_view=DOUfU_EAAAAJ:9yKSN-GCB0IC",
+      "urlLabel": "Google Scholar",
+      "status": "in press",
+      "keywords": [
+        "speech processing",
+        "explainable AI",
+        "healthcare"
       ]
     }
   ]

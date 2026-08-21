@@ -470,33 +470,6 @@ function createImage(config) {
   return figure;
 }
 
-const CAROUSEL_IMAGE_EXTS = [".png", ".jpg", ".jpeg", ".webp", ".gif", ".avif", ".svg"];
-
-function stripQueryAndHash(path) {
-  return String(path || "").split(/[?#]/)[0];
-}
-
-function hasImageExtension(path) {
-  const clean = stripQueryAndHash(path).toLowerCase();
-  return CAROUSEL_IMAGE_EXTS.some(ext => clean.endsWith(ext));
-}
-
-function normalizeDirPath(dir) {
-  let d = String(dir || "").trim();
-  if (!d) return "";
-  d = d.replace(/\\/g, "/");
-  if (!d.endsWith("/")) d += "/";
-  return d;
-}
-
-function looksLikeDirectoryPath(path) {
-  const p = String(path || "").trim();
-  if (!p) return false;
-  if (p.endsWith("/") || p.endsWith("\\")) return true;
-  if (hasImageExtension(p)) return false;
-  return true;
-}
-
 function normalizeCarouselEntries(raw) {
   const out = [];
   if (!Array.isArray(raw)) return out;
@@ -506,165 +479,14 @@ function normalizeCarouselEntries(raw) {
 
     if (typeof item === "string") {
       const v = item.trim();
-      if (!v) return;
-      if (looksLikeDirectoryPath(v)) {
-        out.push({ kind: "dir", dir: v });
-      } else {
-        out.push({ kind: "image", src: v });
-      }
+      if (v) out.push({ src: v });
       return;
     }
 
-    if (typeof item === "object") {
-      if (typeof item.dir === "string" && item.dir.trim()) {
-        out.push({ kind: "dir", dir: item.dir.trim() });
-        return;
-      }
-      if (item.src || item.caption) {
-        out.push({
-          kind: "image",
-          src: item.src || "",
-          alt: item.alt,
-          caption: item.caption
-        });
-      }
+    if (typeof item === "object" && (item.src || item.caption)) {
+      out.push({ src: item.src || "", alt: item.alt, caption: item.caption });
     }
   });
-
-  return out;
-}
-
-async function listImagesFromDirectory(dir) {
-  const d = normalizeDirPath(dir);
-  if (!d) return [];
-
-  try {
-    const res = await fetch(d, { cache: "no-store" });
-    if (!res.ok) return [];
-
-    const html = await res.text();
-    if (!html || !/<a\b/i.test(html)) return [];
-
-    const doc = new DOMParser().parseFromString(html, "text/html");
-    const base = res.url && res.url.trim() ? res.url : d;
-    const baseUrl = base.endsWith("/") ? base : `${base}/`;
-
-    const urls = new Set();
-    doc.querySelectorAll("a[href]").forEach(a => {
-      const href = a.getAttribute("href");
-      if (!href) return;
-      if (href === "../" || href === "..") return;
-      if (href.startsWith("#") || href.startsWith("?")) return;
-      if (href.endsWith("/")) return;
-
-      let abs;
-      try {
-        abs = new URL(href, baseUrl).href;
-      } catch (e) {
-        return;
-      }
-
-      const url = new URL(abs);
-      if (url.origin !== location.origin) return;
-      if (!hasImageExtension(url.pathname)) return;
-      urls.add(url.href);
-    });
-
-    const list = [...urls].sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" }));
-    return list.map(src => ({ src }));
-  } catch (e) {
-    return [];
-  }
-}
-
-async function urlExists(url) {
-  try {
-    const head = await fetch(url, { method: "HEAD", cache: "no-store" });
-    if (head.ok) return true;
-
-    if (head.status === 405 || head.status === 403) {
-      const get = await fetch(url, {
-        method: "GET",
-        headers: { "Range": "bytes=0-0" },
-        cache: "no-store"
-      });
-      return get.ok;
-    }
-  } catch (e) {
-    // ignore
-  }
-  return false;
-}
-
-async function probeNumberedImages(dir, { prefix, start = 1, max = 60, exts } = {}) {
-  const d = normalizeDirPath(dir);
-  if (!d) return [];
-
-  const extensions = Array.isArray(exts) && exts.length ? exts : ["webp", "jpg", "jpeg", "png"];
-  const pref = String(prefix ?? "p");
-
-  const found = [];
-  let misses = 0;
-  const maxMisses = 10;
-
-  for (let i = start; i <= max; i += 1) {
-    let hit = false;
-    for (const ext of extensions) {
-      const name = pref ? `${pref}${i}.${ext}` : `${i}.${ext}`;
-      const url = `${d}${name}`;
-      if (await urlExists(url)) {
-        found.push({ src: url });
-        hit = true;
-        break;
-      }
-    }
-
-    if (hit) {
-      misses = 0;
-    } else {
-      misses += 1;
-      if (misses >= maxMisses) break;
-    }
-  }
-
-  return found;
-}
-
-async function resolveDirImages(dir) {
-  const viaListing = await listImagesFromDirectory(dir);
-  if (viaListing.length) return viaListing;
-
-  const prefixes = ["p", "img", "image", "photo", ""];
-  for (const prefix of prefixes) {
-    const viaProbe = await probeNumberedImages(dir, { prefix });
-    if (viaProbe.length) return viaProbe;
-  }
-
-  return [];
-}
-
-async function resolveCarouselImages(rawImages) {
-  const entries = normalizeCarouselEntries(rawImages);
-  if (!entries.length) return [];
-
-  const out = [];
-  const seen = new Set();
-  const add = (img) => {
-    if (!img || !img.src) return;
-    const key = String(img.src).trim();
-    if (!key || seen.has(key)) return;
-    seen.add(key);
-    out.push(img);
-  };
-
-  for (const entry of entries) {
-    if (entry.kind === "dir") {
-      const imgs = await resolveDirImages(entry.dir);
-      imgs.forEach(add);
-    } else {
-      add(entry);
-    }
-  }
 
   return out;
 }
@@ -708,7 +530,6 @@ function createCarousel(config) {
   if (!config || config.enabled === false) return null;
 
   const entries = normalizeCarouselEntries(config.images);
-  const hasDirEntry = entries.some(entry => entry.kind === "dir");
 
   const wrap = document.createElement("div");
   wrap.className = "exp-carousel";
@@ -734,16 +555,8 @@ function createCarousel(config) {
   const track = document.createElement("div");
   track.className = "car-track";
 
-  if (hasDirEntry) {
-    renderCarouselSlides(track, config, [{ placeholder: true, placeholderText: "Loading images..." }]);
-    prev.style.display = "none";
-    next.style.display = "none";
-  } else {
-    const slides = entries
-      .filter(entry => entry.kind === "image" && (entry.src || entry.caption))
-      .map(entry => ({ src: entry.src, alt: entry.alt, caption: entry.caption }));
-    renderCarouselSlides(track, config, slides.length ? slides : [{ placeholder: true }]);
-  }
+  const slides = entries.filter(entry => entry.src || entry.caption);
+  renderCarouselSlides(track, config, slides.length ? slides : [{ placeholder: true }]);
 
   viewport.appendChild(track);
   frame.appendChild(prev);
@@ -753,27 +566,9 @@ function createCarousel(config) {
 
   const dots = document.createElement("div");
   dots.className = "car-dots";
-  if (hasDirEntry) dots.style.display = "none";
   wrap.appendChild(dots);
 
-  if (hasDirEntry) {
-    resolveCarouselImages(config.images).then((resolved) => {
-      const slides = resolved.length ? resolved : [{ placeholder: true, placeholderText: "No images found." }];
-      renderCarouselSlides(track, config, slides);
-      prev.style.display = "";
-      next.style.display = "";
-      dots.style.display = "";
-      initCarousel(wrap);
-    }).catch(() => {
-      renderCarouselSlides(track, config, [{ placeholder: true, placeholderText: "Could not load images." }]);
-      prev.style.display = "";
-      next.style.display = "";
-      dots.style.display = "";
-      initCarousel(wrap);
-    });
-  } else {
-    initCarousel(wrap);
-  }
+  initCarousel(wrap);
   return wrap;
 }
 

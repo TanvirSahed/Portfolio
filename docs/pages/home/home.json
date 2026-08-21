@@ -62,39 +62,13 @@
     "title": "Featured Projects",
     "subtitle": "Research, engineering, and design projects (scroll one-by-one).",
     "viewAll": { "label": "View all projects", "href": "../projects/projects.html" },
+    "projectsData": "../projects/projects.json",
+    "learnMoreLabel": "Learn more",
     "cards": [
-      {
-        "title": "Lab Dyeing Machine Controller",
-        "tag": "Engineering",
-        "image": "assets/images/photos/p1.jpg",
-        "desc": "Nextion HMI + ATmega328P control, Modbus VFD motor reversal cycles, PID temperature control with safety interlocks.",
-        "primaryBtn": { "label": "Portfolio", "href": "https://yourhostedprojectpage" },
-        "secondaryBtn": { "label": "PDF/Code", "href": "#" }
-      },
-      {
-        "title": "Universal Motor Controller",
-        "tag": "Engineering",
-        "image": "assets/images/photos/p2.jpg",
-        "desc": "Universal controller architecture for motor speed/direction profiles with industrial communication support.",
-        "primaryBtn": { "label": "Portfolio", "href": "#" },
-        "secondaryBtn": { "label": "PDF/Code", "href": "#" }
-      },
-      {
-        "title": "Solar Plant Digital Twin Forecasting",
-        "tag": "Research",
-        "image": "assets/images/photos/p3.jpg",
-        "desc": "Scalable generation forecasting workflow designed to extend from 100 kW to multi-MW plants.",
-        "primaryBtn": { "label": "Portfolio", "href": "#" },
-        "secondaryBtn": { "label": "Paper", "href": "#" }
-      },
-      {
-        "title": "3D Mechanical Layouts & Enclosures",
-        "tag": "3D Design",
-        "image": "assets/images/photos/p4.jpg",
-        "desc": "Enclosure and mounting designs for embedded/industrial systems with print-ready outputs.",
-        "primaryBtn": { "label": "Gallery", "href": "#" },
-        "secondaryBtn": { "label": "Files", "href": "#" }
-      }
+      { "category": "Embedded Systems", "key": "E-Grenade" },
+      { "category": "Embedded Systems", "key": "7DOF Robotic ARM" },
+      { "category": "AI", "key": "LipReading" },
+      { "category": "Embedded Systems", "key": "Lab Dyeing Machine" }
     ]
   },
   "education": {
@@ -144,16 +118,14 @@
     "subtitle": "A visual wall of achievements. Hover to zoom; click to open.",
     "autoScrollMs": 4500,
     "items": [
-      { "title": "Certificate Title 1", "thumb": "assets/images/photos/a1.jpg", "href": "#" },
-      { "title": "Certificate Title 2", "thumb": "assets/images/photos/a2.jpg", "href": "#" },
-      { "title": "Certificate Title 3", "thumb": "assets/images/photos/a3.jpg", "href": "#" }
+      { "title": "IEEE COMPAS 2025, Paper Presentation", "thumb": "assets/images/Certificates/conf_1.jpg", "href": "assets/images/Certificates/conf_1.jpg" },
+      { "title": "MIST Robotics Club, President 2023-24", "thumb": "assets/images/Certificates/club.jpg", "href": "assets/images/Certificates/club.jpg" },
+      { "title": "iTech Expo x Techfest IIT Bombay 2022, Semi-Finalist", "thumb": "assets/images/Certificates/TechFest.png", "href": "assets/images/Certificates/TechFest.png" },
+      { "title": "EEE Day 2023 (KUET), Finalist", "thumb": "assets/images/Certificates/kuet.png", "href": "assets/images/Certificates/kuet.png" },
+      { "title": "ESONANCE 2023, Line Follower Robot", "thumb": "assets/images/Certificates/LineFoloower.jpeg", "href": "assets/images/Certificates/LineFoloower.jpeg" },
+      { "title": "ESONANCE 2023, Soccer Bot", "thumb": "assets/images/Certificates/SoccerBot.jpeg", "href": "assets/images/Certificates/SoccerBot.jpeg" },
+      { "title": "ESONANCE 2023, Quadcopter", "thumb": "assets/images/Certificates/Quadcopter.jpeg", "href": "assets/images/Certificates/Quadcopter.jpeg" }
     ]
-  },
-  "github": {
-    "title": "Recent GitHub Activity",
-    "enabled": true,
-    "username": "yourusername",
-    "maxItems": 8
   },
   "coding": {
     "title": "Problem Solving",
@@ -162,6 +134,8 @@
   },
   "footer": {
     "bg": "#e2e8f0",
+    "logo": "assets/images/logos/mist.webp",
+    "logoAlt": "Military Institute of Science and Technology (MIST)",
     "layout": {
       "padding": "26px 0 20px",
       "bodyGap": "24px",

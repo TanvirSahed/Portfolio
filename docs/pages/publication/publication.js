@@ -15,11 +15,27 @@ function uniqueSorted(values) {
     .sort((a, b) => String(a).localeCompare(String(b), undefined, { numeric: true }));
 }
 
+const TYPE_ORDER = ["Journal article", "Conference paper", "Preprint", "Under review"];
+
+function typeRank(type) {
+  const idx = TYPE_ORDER.indexOf(type);
+  return idx === -1 ? TYPE_ORDER.length : idx;
+}
+
 function sortPublications(pubs) {
   return [...pubs].sort((a, b) => {
+    const firstA = a.firstAuthor ? 0 : 1;
+    const firstB = b.firstAuthor ? 0 : 1;
+    if (firstA !== firstB) return firstA - firstB;
+
+    const typeA = typeRank(a.type);
+    const typeB = typeRank(b.type);
+    if (typeA !== typeB) return typeA - typeB;
+
     const yearA = a.year || 0;
     const yearB = b.year || 0;
     if (yearA !== yearB) return yearB - yearA;
+
     return String(a.title || "").localeCompare(String(b.title || ""));
   });
 }

@@ -112,6 +112,7 @@
       "subtitle": "",
       "projects": {
         "LipReading": {
+          "serial": 1,
           "title": "Visual Speech Recognition Bengali Language (DL)",
           "overview": "Bridged the low-resource gap in Bengali visual speech recognition by building LipBengal, the first large-scale Bengali lip-reading dataset, and a 3D CNN + BiLSTM + CTC pipeline to validate it.",
           "methodology": [
@@ -132,10 +133,11 @@
             "width": "100%",
             "height": "240px",
             "showCaptions": false,
-            "images": ["assets/images/lipreading"]
+            "images": ["assets/images/lipreading/p1.webp", "assets/images/lipreading/p2.webp", "assets/images/lipreading/p3.webp", "assets/images/lipreading/p4.webp", "assets/images/lipreading/p5.webp", "assets/images/lipreading/p6.webp", "assets/images/lipreading/p7.webp", "assets/images/lipreading/p8.webp", "assets/images/lipreading/p9.webp", "assets/images/lipreading/p10.webp", "assets/images/lipreading/p11.webp", "assets/images/lipreading/p12.webp", "assets/images/lipreading/p13.webp"]
           }
         },
         "ETD": {
+          "serial": 2,
           "title": "Electricity Theft Detection (ML)",
           "overview": "Lorem ipsum abstract for a compact vision triage module that flags defects under constrained lighting.",
           "methodology": [
@@ -156,11 +158,11 @@
             "width": "100%",
             "height": "240px",
             "showCaptions": false,
-            "images": ["assets/images/etd"
-            ]
+            "images": ["assets/images/etd/p1.webp", "assets/images/etd/p2.webp", "assets/images/etd/p3.webp", "assets/images/etd/p4.webp", "assets/images/etd/p5.webp", "assets/images/etd/p6.webp", "assets/images/etd/p7.webp", "assets/images/etd/p8.webp", "assets/images/etd/p9.webp"]
           }
         },
         "ML-Cyber": {
+          "serial": 3,
           "title": "Two stage Cyber attack Detection for Smart Grid (ML)",
           "overview": "Lorem ipsum abstract for a forecasting pilot that tracks plant telemetry and short-horizon trends.",
           "methodology": [
@@ -196,6 +198,7 @@
           }
         },
         "Tomato Classifier": {
+          "serial": 4,
           "title": "Tomato Ripeness Classification (CNN)",
           "overview": "Deep-learning image classifier that distinguishes ripe from unripe tomatoes in real time, benchmarking a custom CNN against transfer-learning baselines.",
           "methodology": [
@@ -220,7 +223,30 @@
     "Embedded Systems": {
       "subtitle": "",
       "projects": {
+        "E-Grenade": {
+          "serial": 1,
+          "title": "eGrenade: Electronic 3D Position-Tracking Practice Grenade",
+          "overview": "Ongoing research project: a 3D-printed, non-explosive ESP32 practice grenade that senses its own throw and reconstructs a full 3D trajectory onboard, for objective grenade-throwing assessment without external cameras, radar, or motion-capture rigs.",
+          "methodology": [
+            "An ESP32 DevKit V1 runs interrupt-driven acquisition from a GY-87 board (MPU6050 IMU with onboard DMP orientation/gravity output, QMC5883L magnetometer, BMP180 barometer) over I2C, timestamped to the millisecond off the IMU's data-ready pin.",
+            "Event detection runs independently of the IMU stream: a Hall-effect sensor and magnet in the detachable safety-lever assembly mark 'activation' the moment the pin/spoon is pulled, while 4 piezoelectric sensors distributed around the body flag ground impact from any landing orientation, driving an Idle to Active to Released to In-flight to Landed to Recovered state machine.",
+            "The 3D-printed ABS enclosure is modeled on a BD-84 reference grenade's dimensional envelope (110.64 x 62.76 mm), with a gyroid-infill and TPU-damped internal mount protecting the electronics payload from repeated throw and impact shock, inside a detachable, non-explosive safety-lever assembly that reproduces the real pin-and-spoon interaction.",
+            "The ESP32 streams IMU, compass, and barometer data over WiFi UDP using a custom framed binary protocol (magic header, type ID, length, CRC32) to a Python 'digital twin' app, which fuses it through EMA/median/Hampel outlier filtering, an EKF for orientation with compass-yaw correction, zero-velocity updates (ZUPT) and drag compensation to fight position drift, and barometric altitude fusion, plotted live in a 3D path viewer."
+          ],
+          "findings": [
+            "Functional prototype assembled at 432 g, about 10% lighter than the 480 g reference grenade, with internal mass kept close to the body centerline to preserve realistic throwing feel and balance.",
+            "Live WiFi telemetry and an EKF/ZUPT-based orientation-and-position pipeline are working and tunable end to end; validating trajectory accuracy against ArUco/ChArUco camera ground truth and training an impact/fall classifier are the next steps."
+          ],
+          "carousel": {
+            "enabled": true,
+            "width": "100%",
+            "height": "240px",
+            "showCaptions": false,
+            "images": ["assets/images/egrenade/merged.jpg", "assets/images/egrenade/exploded_view.jpg", "assets/images/egrenade/lrShell.jpg", "assets/images/egrenade/esp_gy87.jpg", "assets/images/egrenade/event_sensing.jpg", "assets/images/egrenade/digital-twin-live.png"]
+          }
+        },
         "IG ECU": {
+          "serial": 2,
           "title": "Ignition System for Engine Control Unit_STM32",
           "overview": "Real-time ignition control unit for STM32F4, built at Creative Factory Labs for a German automotive client, calculating engine RPM from encoder feedback and dynamically timing coil dwell for precise spark control.",
           "methodology": [
@@ -242,10 +268,11 @@
             "width": "100%",
             "height": "240px",
             "showCaptions": false,
-            "images": ["assets/images/ignition"]
+            "images": ["assets/images/ignition/p1.jpg", "assets/images/ignition/p2.jpg", "assets/images/ignition/p3.jpg", "assets/images/ignition/p4.jpg", "assets/images/ignition/p5.jpg", "assets/images/ignition/p6.jpg", "assets/images/ignition/p7.jpg", "assets/images/ignition/p8.jpg", "assets/images/ignition/p9.jpg", "assets/images/ignition/p10.jpg", "assets/images/ignition/p11.jpg", "assets/images/ignition/p12.jpg", "assets/images/ignition/p13.jpg"]
           }
         },
         "7DOF Robotic ARM": {
+          "serial": 3,
           "title": "Object Classification by a 7-DOF Robotic Arm Using MobileNet-SSD and Feedback Position Mapping",
           "overview": "A 7-DOF MG996R/ATmega2560 robotic arm that classifies and sorts cups vs. bottles using MobileNet-SSDV3, controlled through feedback position mapping instead of kinematic equations. Published at IEEE QPAIN 2025, with a companion ROS2 (Humble) model for RViz2 visualization and Gazebo simulation.",
           "methodology": [
@@ -270,10 +297,11 @@
             "width": "100%",
             "height": "240px",
             "showCaptions": false,
-            "images": ["assets/images/robotic-arm-7dof"]
+            "images": ["assets/images/robotic-arm-7dof/p0.jpg", "assets/images/robotic-arm-7dof/p1.jpg", "assets/images/robotic-arm-7dof/p2.jpg", "assets/images/robotic-arm-7dof/p3.jpg", "assets/images/robotic-arm-7dof/p4.jpg", "assets/images/robotic-arm-7dof/p5.jpg", "assets/images/robotic-arm-7dof/p6.jpg", "assets/images/robotic-arm-7dof/p7.PNG", "assets/images/robotic-arm-7dof/p13.jpg", "assets/images/robotic-arm-7dof/p14.jpg"]
           }
         },
         "Motor Controller": {
+          "serial": 4,
           "title": "Hydropower Plant Valve Motor Controller",
           "overview": "Dual Modbus STM32F407 motor controller built for a hydropower plant's valve actuation system, driving stepper and brushed-DC motors for precise valve positioning and industrial automation integration.",
           "methodology": [
@@ -295,10 +323,11 @@
             "width": "100%",
             "height": "240px",
             "showCaptions": false,
-            "images": ["assets/images/motor-controller"]
+            "images": ["assets/images/motor-controller/p1.jpg", "assets/images/motor-controller/p2.jpg", "assets/images/motor-controller/p3.jpg", "assets/images/motor-controller/p4.jpg", "assets/images/motor-controller/p5.jpg", "assets/images/motor-controller/p6.jpg", "assets/images/motor-controller/p7.jpg", "assets/images/motor-controller/p8.jpg", "assets/images/motor-controller/p9.jpg", "assets/images/motor-controller/p10.jpg", "assets/images/motor-controller/p11.jpg", "assets/images/motor-controller/p12.jpg", "assets/images/motor-controller/p13.jpg", "assets/images/motor-controller/p14.jpg", "assets/images/motor-controller/p15.jpg"]
           }
         },
         "Lab Dyeing Machine": {
+          "serial": 5,
           "title": "MCU powered Textile Lab Dyeing Machine",
           "overview": "Closed-loop temperature and motor controller for a sample textile dyeing machine, more feature-rich than the PLC-based rig it replaces and built at about 20% of the cost.",
           "methodology": [
@@ -310,19 +339,21 @@
             "Precise ±0.1°C temperature control and more repeatable speed control than the analogue original.",
             "Precise timing control from the MCU's hardware timers."
           ],
-          "link": {
-            "label": "GitHub repo",
-            "href": "https://github.com/TanvirSahed/Micro-controller-Powered-Lab-Dyeing-Machine-"
-          },
+          "links": [
+            { "label": "Project site", "href": "https://tanvirsahed.github.io/Micro-controller-Powered-Lab-Dyeing-Machine-/" },
+            { "label": "GitHub repo", "href": "https://github.com/TanvirSahed/Micro-controller-Powered-Lab-Dyeing-Machine-" },
+            { "label": "Demo video", "href": "https://www.youtube.com/watch?v=dhpXEIdWI0s" }
+          ],
           "carousel": {
             "enabled": true,
             "width": "100%",
             "height": "240px",
             "showCaptions": false,
-            "images": ["assets/images/lab-dyeing"]
+            "images": ["assets/images/lab-dyeing/p1.png", "assets/images/lab-dyeing/p2.webp", "assets/images/lab-dyeing/p3.webp", "assets/images/lab-dyeing/p3x.webp", "assets/images/lab-dyeing/flow-diagram.png", "assets/images/lab-dyeing/p4.JPG", "assets/images/lab-dyeing/p5.jpg", "assets/images/lab-dyeing/p6.jpg", "assets/images/lab-dyeing/p7.jpg", "assets/images/lab-dyeing/p8.jpg", "assets/images/lab-dyeing/p9.png", "assets/images/lab-dyeing/p10.png", "assets/images/lab-dyeing/p11.png", "assets/images/lab-dyeing/p12.png", "assets/images/lab-dyeing/p13.png", "assets/images/lab-dyeing/p14.png", "assets/images/lab-dyeing/p15.JPG"]
           }
         },
         "Smart Flow-Meter": {
+          "serial": 6,
           "title": "Water management system with Smart Flow-Meter",
           "overview": "Low-cost, high-precision Modbus water flow meter with a companion Qt desktop app for shift-wise usage tracking, calibration, and remote viewing.",
           "methodology": [
@@ -334,54 +365,20 @@
             "Calibrated to 0.005 tolerance against a reference meter.",
             "A year of usage history stores and retrieves cleanly, with the threaded GUI staying responsive under load."
           ],
-          "link": {
-            "label": "GitHub repo",
-            "href": "https://github.com/TanvirSahed/Smart-Water-Flow-Meter"
-          },
+          "links": [
+            { "label": "GitHub repo", "href": "https://github.com/TanvirSahed/Smart-Water-Flow-Meter" },
+            { "label": "Demo video", "href": "https://youtu.be/CIgm-EOp5tg" }
+          ],
           "carousel": {
             "enabled": true,
             "width": "100%",
             "height": "240px",
             "showCaptions": false,
-            "images": ["assets/images/flow-meter"]
-          }
-        },
-        "E-Grenade": {
-          "title": "ESP based Practise Grenade for Military Training",
-          "overview": "Lorem ipsum abstract for a Modbus gateway linking legacy devices.",
-          "methodology": [
-            "Protocol mapping and timing checks.",
-            "Error handling with retry analysis.",
-            "Integration tests with PLCs."
-          ],
-          "findings": [
-            "Clean logs with low retries.",
-            "Stable integration across shifts."
-          ],
-          "link": {
-            "label": "View project",
-            "href": "https://example.com/emb-06"
-          },
-          "carousel": {
-            "enabled": true,
-            "width": "100%",
-            "height": "240px",
-            "showCaptions": false,
-            "images": [
-              {
-                "src": "assets/images/photos/emb-06-1.jpg",
-                "alt": "Gateway preview",
-                "caption": "Result"
-              },
-              {
-                "src": "assets/images/photos/emb-06-2.jpg",
-                "alt": "Wiring layout",
-                "caption": "Construction"
-              }
-            ]
+            "images": ["assets/images/flow-meter/p3.jpeg", "assets/images/flow-meter/p1.jpeg", "assets/images/flow-meter/p2.jpeg", "assets/images/flow-meter/p4.png", "assets/images/flow-meter/p6.png", "assets/images/flow-meter/p5.jpeg"]
           }
         },
         "Cosmo Clench Robot": {
+          "serial": 7,
           "title": "Cosmo Clench Robot",
           "overview": "Wired-joystick pick-and-place robot arm built for the TechFest-IIT international robotics competition (IIT, India).",
           "methodology": [
@@ -393,15 +390,20 @@
             "Servo motion tracked the joystick closely.",
             "Gripper couldn't reliably close on objects wider than ~7 cm, a mechanical limit for a future revision."
           ],
-          "link": {
-            "label": "GitHub repo",
-            "href": "https://github.com/TanvirSahed/CosmoClench_or_pickAndPlace_Robot_Arm"
-          },
+          "links": [
+            { "label": "GitHub repo", "href": "https://github.com/TanvirSahed/CosmoClench_or_pickAndPlace_Robot_Arm" },
+            { "label": "Demo video", "href": "https://youtube.com/shorts/teXFgH0uGRs?feature=share" }
+          ],
           "carousel": {
-            "enabled": false
+            "enabled": true,
+            "width": "100%",
+            "height": "240px",
+            "showCaptions": false,
+            "images": ["assets/images/cosmo/p1.jpg", "assets/images/cosmo/p2.jpeg", "assets/images/cosmo/p3.jpeg"]
           }
         },
         "Line following Robot": {
+          "serial": 8,
           "title": "Line following Robot",
           "overview": "Lorem ipsum abstract for an actuator control pack tuned for smooth motion.",
           "methodology": [
@@ -437,6 +439,7 @@
           }
         },
         "Gesture Joystick": {
+          "serial": 9,
           "title": "Motion-Controlled Mouse via IMU Gesture Joystick",
           "overview": "Handheld motion controller that emulates mouse movement and clicks from IMU gestures, aimed at hands-free motion control in gaming.",
           "methodology": [
@@ -447,15 +450,20 @@
             "Cursor tracked hand movement accurately about 99% of the time.",
             "Custom trigger buttons for click actions worked reliably."
           ],
-          "link": {
-            "label": "GitHub repo",
-            "href": "https://github.com/TanvirSahed/Motion_controlled_joystick_using_Arduio"
-          },
+          "links": [
+            { "label": "GitHub repo", "href": "https://github.com/TanvirSahed/Motion_controlled_joystick_using_Arduio" },
+            { "label": "Demo video", "href": "https://youtu.be/hYc0h30_X74" }
+          ],
           "carousel": {
-            "enabled": false
+            "enabled": true,
+            "width": "100%",
+            "height": "240px",
+            "showCaptions": false,
+            "images": ["assets/images/motionMouse/p1.jpg", "assets/images/motionMouse/p2.PNG"]
           }
         },
         "Gas Fire Alarm": {
+          "serial": 10,
           "title": "IoT-Based Gas and Fire Detector",
           "overview": "ESP8266-based safety alarm that detects gas leaks or fire and pushes an instant notification to the user's phone.",
           "methodology": [
@@ -467,12 +475,16 @@
             "Detection reliability was constrained by the low-cost sensors used.",
             "About 14 seconds of latency between a detection event and it being logged."
           ],
-          "link": {
-            "label": "GitHub repo",
-            "href": "https://github.com/TanvirSahed/IOT_Based_Gas_and_Fire_Detector"
-          },
+          "links": [
+            { "label": "GitHub repo", "href": "https://github.com/TanvirSahed/IOT_Based_Gas_and_Fire_Detector" },
+            { "label": "Demo video", "href": "https://youtu.be/MVuwvNnm8fQ" }
+          ],
           "carousel": {
-            "enabled": false
+            "enabled": true,
+            "width": "100%",
+            "height": "240px",
+            "showCaptions": false,
+            "images": ["assets/images/gasFire/p1.jpg", "assets/images/gasFire/p2.jpg", "assets/images/gasFire/p3.PNG", "assets/images/gasFire/p4.PNG"]
           }
         }
       }
@@ -481,6 +493,7 @@
       "subtitle": "",
       "projects": {
         "Compact Control Enclosure": {
+          "serial": 1,
           "title": "Compact Control Enclosure",
           "overview": "Fusion 360 study for a compact enclosure with serviceability and airflow targets.",
           "methodology": [
@@ -516,6 +529,7 @@
           }
         },
         "Modular Mounting System": {
+          "serial": 2,
           "title": "Modular Mounting System",
           "overview": "Fusion 360 modular bracket kit for quick alignment in field installations.",
           "methodology": [
@@ -551,6 +565,7 @@
           }
         },
         "Instrument Panel Layout": {
+          "serial": 3,
           "title": "Instrument Panel Layout",
           "overview": "Fusion 360 panel layout for a compact HMI with service access constraints.",
           "methodology": [
@@ -586,6 +601,7 @@
           }
         },
         "Cable Management Guide": {
+          "serial": 4,
           "title": "Cable Management Guide",
           "overview": "Fusion 360 routing guide for harnesses with bend radius targets.",
           "methodology": [

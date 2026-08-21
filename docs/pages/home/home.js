@@ -292,12 +292,49 @@ function projectCardHTML(p) {
         </div>
         <p class="pdesc">${p.desc || ""}</p>
         <div class="plinks">
-          <a href="${p.primaryBtn?.href || "#"}" target="_blank" rel="noreferrer">[${p.primaryBtn?.label || "Portfolio"}]</a>
-          <a href="${p.secondaryBtn?.href || "#"}" target="_blank" rel="noreferrer">[${p.secondaryBtn?.label || "Link"}]</a>
+          <a href="${p.primaryBtn?.href || "#"}">[${p.primaryBtn?.label || "Learn more"}]</a>
         </div>
       </div>
     </article>
   `;
+}
+
+// Same slug rule as pages/projects/projects.js, so hrefs built here match the
+// data-category-id / data-project-key attributes projects.js sets on load.
+const slugifyKey = (value) => String(value || "")
+  .toLowerCase()
+  .replace(/[^a-z0-9]+/g, "-")
+  .replace(/^-+|-+$/g, "");
+
+function firstProjectImage(project) {
+  const images = project?.carousel?.images;
+  if (!Array.isArray(images) || !images.length) return "";
+  const first = images[0];
+  if (typeof first === "string") return first;
+  if (first && typeof first === "object") return first.src || "";
+  return "";
+}
+
+function resolveFeaturedCard(ref, projectsRoot, learnMoreLabel) {
+  const categoryData = projectsRoot?.projects?.[ref.category];
+  const rawProjects = categoryData ? (categoryData.projects || categoryData) : null;
+  const project = rawProjects ? rawProjects[ref.key] : null;
+  if (!project) return null;
+
+  const categoryId = slugifyKey(ref.category);
+  const projectSlug = slugifyKey(ref.key);
+  const image = firstProjectImage(project);
+
+  return {
+    title: project.title || ref.key,
+    tag: ref.category,
+    image: image ? `../projects/${image}` : "",
+    desc: project.overview || "",
+    primaryBtn: {
+      label: learnMoreLabel || "Learn more",
+      href: `../projects/projects.html?highlight=${encodeURIComponent(categoryId)}:${encodeURIComponent(projectSlug)}`
+    }
+  };
 }
 
 function setupCarousel(cards) {
@@ -351,7 +388,7 @@ function setupCarousel(cards) {
   update();
 }
 
-function renderFeaturedProjects(fp) {
+async function renderFeaturedProjects(fp) {
   $("#fp-title").textContent = fp.title || "Featured Projects";
   $("#fp-subtitle").textContent = fp.subtitle || "";
 
@@ -359,7 +396,24 @@ function renderFeaturedProjects(fp) {
   viewAll.textContent = fp.viewAll?.label || "View all projects";
   viewAll.href = fp.viewAll?.href || "../projects/projects.html";
 
-  setupCarousel(fp.cards || []);
+  const refs = fp.cards || [];
+  let cards = [];
+
+  if (fp.projectsData && refs.length) {
+    try {
+      const res = await fetch(fp.projectsData, { cache: "no-store" });
+      if (res.ok) {
+        const projectsRoot = await res.json();
+        cards = refs
+          .map(ref => resolveFeaturedCard(ref, projectsRoot, fp.learnMoreLabel))
+          .filter(Boolean);
+      }
+    } catch (e) {
+      // Leave cards empty rather than break the rest of the page.
+    }
+  }
+
+  setupCarousel(cards);
 }
 
 function renderEducation(edu) {
@@ -538,6 +592,17 @@ function renderFooter(foot) {
   setVar("--foot-bottom-head-size", layout.bottomHeadSize);
   setVar("--foot-bottom-text-size", layout.bottomTextSize);
 
+  const logo = $("#foot-logo");
+  if (logo) {
+    if (foot.logo) {
+      logo.src = foot.logo;
+      logo.alt = foot.logoAlt || "";
+      logo.style.display = "";
+    } else {
+      logo.style.display = "none";
+    }
+  }
+
   const address = $("#foot-address");
   const contact = $("#foot-contact");
   const hours = $("#foot-hours");
@@ -588,70 +653,6 @@ function renderFooter(foot) {
   }
 }
 
-async function fetchGitHubEvents(username, maxItems = 8) {
-  const url = `https://api.github.com/users/${encodeURIComponent(username)}/events/public`;
-  const res = await fetch(url, { headers: { "Accept": "application/vnd.github+json" } });
-  if (!res.ok) throw new Error("GitHub API error");
-  const events = await res.json();
-
-  const mapped = [];
-  for (const e of events) {
-    if (mapped.length >= maxItems) break;
-    const repo = e.repo?.name || "";
-    const date = new Date(e.created_at).toLocaleString();
-    let title = e.type;
-    let msg = "";
-
-    if (e.type === "PushEvent") {
-      title = `Pushed to ${repo}`;
-      const commits = e.payload?.commits || [];
-      msg = commits.slice(0, 2).map(c => `• ${c.message}`).join("\n");
-    } else if (e.type === "CreateEvent") {
-      title = `Created ${e.payload?.ref_type || "item"} in ${repo}`;
-      msg = e.payload?.ref ? `Ref: ${e.payload.ref}` : "";
-    } else if (e.type === "PullRequestEvent") {
-      title = `${e.payload?.action || "PR"}: ${repo}`;
-      msg = e.payload?.pull_request?.title || "";
-    } else if (e.type === "IssuesEvent") {
-      title = `${e.payload?.action || "Issue"}: ${repo}`;
-      msg = e.payload?.issue?.title || "";
-    } else {
-      title = `${e.type} · ${repo}`;
-    }
-
-    mapped.push({ title, msg, date, repo });
-  }
-
-  return mapped;
-}
-
-async function renderGitHub(gh) {
-  const sec = $("#gh-section");
-  if (!gh?.enabled) return;
-
-  $("#gh-title").textContent = gh.title || "Recent GitHub Activity";
-  sec.style.display = "";
-
-  try {
-    const items = await fetchGitHubEvents(gh.username, gh.maxItems || 8);
-    $("#gh-loading").style.display = "none";
-    const list = $("#gh-list");
-    list.innerHTML = "";
-    items.forEach(it => {
-      const div = document.createElement("div");
-      div.className = "gh-item";
-      div.innerHTML = `
-        <div class="t">${it.title}</div>
-        ${it.msg ? `<div class="m">${it.msg.replace(/\n/g, "<br>")}</div>` : ""}
-        <div class="d">${it.date}</div>
-      `;
-      list.appendChild(div);
-    });
-  } catch (e) {
-    $("#gh-loading").textContent = "GitHub activity could not be loaded right now.";
-  }
-}
-
 function renderCoding(coding) {
   const sec = $("#coding-section");
   if (!coding?.enabled) return;
@@ -673,11 +674,10 @@ function setFooter() {
   renderHero(data.hero);
   await renderAbout(data.about);   // await because renderAbout may fetch summaryFile
   renderAboutBadges(data.aboutBadges);
-  renderFeaturedProjects(data.featuredProjects);
+  await renderFeaturedProjects(data.featuredProjects);
   renderEducation(data.education);
   renderAwards(data.awards);
 
-  await renderGitHub(data.github);
   renderCoding(data.coding);
   renderFooter(data.footer);
 

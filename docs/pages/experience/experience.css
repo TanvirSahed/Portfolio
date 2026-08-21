@@ -444,6 +444,7 @@ body {
 }
 
 .car-viewport {
+  grid-column: 2;
   overflow: hidden;
   border-radius: 10px;
   /* background: #ffffff; */
