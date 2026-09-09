@@ -26,9 +26,9 @@
     "email": "tanvir@eece.mist.ac.bd",
     "departmentLine": "Department of Electrical, Electronic and Communication Engineering",
     "social": [
-      { "type": "github", "label": "GitHub", "url": "https://github.com/yourusername" },
-      { "type": "linkedin", "label": "LinkedIn", "url": "https://linkedin.com/in/yourusername" },
-      { "type": "facebook", "label": "Facebook", "url": "https://facebook.com/yourusername" }
+      { "type": "github", "label": "GitHub", "url": "https://github.com/tanvirsahed" },
+      { "type": "linkedin", "label": "LinkedIn", "url": "https://www.linkedin.com/in/tanvir-sahed-b68759275" },
+      { "type": "facebook", "label": "Facebook", "url": "https://facebook.com/me.unique1" }
     ]
   },
   "about": {
@@ -151,7 +151,7 @@
       "bottomTextSize": "14px"
     },
     "address": [
-      "Tower-3, 11 Floor, Room 101",
+      "Tower-3, 11 Floor, Room 1104",
       "Military Institute of Science and Technology (MIST)",
       "Dhaka, Bangladesh"
     ],

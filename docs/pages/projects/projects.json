@@ -150,8 +150,8 @@
             "Reduced inspection time per unit."
           ],
           "link": {
-            "label": "View project",
-            "href": "https://example.com/ai-02"
+            "label": "View paper (IEEE)",
+            "href": "https://ieeexplore.ieee.org/document/11381615"
           },
           "carousel": {
             "enabled": true,
@@ -175,8 +175,8 @@
             "Improved planning over static heuristics."
           ],
           "link": {
-            "label": "View project",
-            "href": "https://example.com/ai-03"
+            "label": "View paper (IEEE)",
+            "href": "https://ieeexplore.ieee.org/document/11381615"
           },
           "carousel": {
             "enabled": true,
