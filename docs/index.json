@@ -1,4 +1,7 @@
 {
+  "analytics": {
+    "ga4": ""
+  },
   "nav": {
     "nameLeft": "Tanvir Sahed",
     "nameLeftStyle": {

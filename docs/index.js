@@ -59,10 +59,28 @@
     });
   }
 
+  // Google Analytics 4, enabled by setting analytics.ga4 ("G-XXXXXXX") in index.json
+  function initAnalytics(cfg) {
+    const id = String(cfg?.ga4 || "").trim();
+    if (!/^G-[A-Z0-9]+$/i.test(id)) return;
+    if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname) || location.protocol === "file:") return;
+
+    const tag = document.createElement("script");
+    tag.async = true;
+    tag.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(id)}`;
+    document.head.appendChild(tag);
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag("js", new Date());
+    window.gtag("config", id);
+  }
+
   fetch(jsonPath, { cache: "no-store" })
     .then((res) => (res.ok ? res.json() : null))
     .then((data) => {
       if (data && data.nav) renderNav(data.nav);
+      if (data) initAnalytics(data.analytics);
     })
     .catch(() => {
       // leave any existing nav links in place on failure

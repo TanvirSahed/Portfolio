@@ -26,6 +26,8 @@
     "email": "tanvir@eece.mist.ac.bd",
     "departmentLine": "Department of Electrical, Electronic and Communication Engineering",
     "social": [
+      { "type": "orcid", "label": "ORCID", "url": "https://orcid.org/0009-0003-3108-7655" },
+      { "type": "scholar", "label": "Google Scholar", "url": "https://scholar.google.com/citations?user=DOUfU_EAAAAJ" },
       { "type": "github", "label": "GitHub", "url": "https://github.com/tanvirsahed" },
       { "type": "linkedin", "label": "LinkedIn", "url": "https://www.linkedin.com/in/tanvir-sahed-b68759275" },
       { "type": "facebook", "label": "Facebook", "url": "https://facebook.com/me.unique1" }
